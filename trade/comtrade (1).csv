@@ -1,0 +1,82 @@
+Classification,Year,Period,Period Desc.,Aggregate Level,Is Leaf Code,Trade Flow Code,Trade Flow,Reporter Code,Reporter,Reporter ISO,Partner Code,Partner,Partner ISO,2nd Partner Code,2nd Partner,2nd Partner ISO,Customs Proc. Code,Customs,Mode of Transport Code,Mode of Transport,Commodity Code,Commodity,Qty Unit Code,Qty Unit,Qty,Alt Qty Unit Code,Alt Qty Unit,Alt Qty,Netweight (kg),Gross weight (kg),Trade Value (US$),CIF Trade Value (US$),FOB Trade Value (US$),Flag
+H5,2019,2019,2019,0,0,1,Import,124,Canada,CAN,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,6553856942,,,0
+H5,2019,2019,2019,0,0,2,Export,124,Canada,CAN,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2741161735,,,4
+H5,2019,2019,2019,0,0,1,Import,124,Canada,CAN,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,7137568164,,,0
+H5,2019,2019,2019,0,0,2,Export,124,Canada,CAN,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2442387356,,,4
+H5,2019,2019,2019,0,0,1,Import,124,Canada,CAN,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,7161082795,,,0
+H5,2019,2019,2019,0,0,2,Export,124,Canada,CAN,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4178075819,,,4
+H5,2019,2019,2019,0,0,1,Import,124,Canada,CAN,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,3981150616,,,0
+H5,2019,2019,2019,0,0,2,Export,124,Canada,CAN,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3648454814,,,4
+H5,2019,2019,2019,0,0,1,Import,251,France,FRA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3476192476,,,4
+H5,2019,2019,2019,0,0,2,Export,251,France,FRA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4196426989,,,4
+H5,2019,2019,2019,0,0,1,Import,251,France,FRA,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5956731375,,,4
+H5,2019,2019,2019,0,0,1,Import,251,France,FRA,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,48590645440,,,4
+H5,2019,2019,2019,0,0,2,Export,251,France,FRA,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,42046621688,,,4
+H5,2019,2019,2019,0,0,1,Import,251,France,FRA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4645640379,,,4
+H5,2019,2019,2019,0,0,2,Export,251,France,FRA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5811574736,,,4
+H5,2019,2019,2019,0,0,1,Import,251,France,FRA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,7044693778,,,4
+H5,2019,2019,2019,0,0,2,Export,251,France,FRA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,6005949684,,,4
+H5,2019,2019,2019,0,0,1,Import,381,Italy,ITA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,1957090618,,,4
+H5,2019,2019,2019,0,0,2,Export,381,Italy,ITA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5032274421,,,4
+H5,2019,2019,2019,0,0,1,Import,381,Italy,ITA,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,38992513310,,,4
+H5,2019,2019,2019,0,0,2,Export,381,Italy,ITA,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,56604054128,,,4
+H5,2019,2019,2019,0,0,1,Import,381,Italy,ITA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4175985027,,,4
+H5,2019,2019,2019,0,0,2,Export,381,Italy,ITA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5441160404,,,4
+H5,2019,2019,2019,0,0,1,Import,381,Italy,ITA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5770299504,,,4
+H5,2019,2019,2019,0,0,2,Export,381,Italy,ITA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4468969024,,,4
+H5,2019,2019,2019,0,0,1,Import,410,Rep. of Korea,KOR,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5721021086,,,4
+H5,2019,2019,2019,0,0,2,Export,410,Rep. of Korea,KOR,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5567578712,,,4
+H5,2019,2019,2019,0,0,1,Import,410,Rep. of Korea,KOR,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5840696811,,,4
+H5,2019,2019,2019,0,0,2,Export,410,Rep. of Korea,KOR,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3392058041,,,4
+H5,2019,2019,2019,0,0,1,Import,410,Rep. of Korea,KOR,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,6449275681,,,4
+H5,2019,2019,2019,0,0,2,Export,410,Rep. of Korea,KOR,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3773364654,,,4
+H5,2019,2019,2019,0,0,1,Import,410,Rep. of Korea,KOR,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5565259381,,,4
+H5,2019,2019,2019,0,0,2,Export,410,Rep. of Korea,KOR,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,15096301413,,,4
+H5,2019,2019,2019,0,0,1,Import,699,India,IND,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3900626739,,,4
+H5,2019,2019,2019,0,0,2,Export,699,India,IND,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2901550265,,,4
+H5,2019,2019,2019,0,0,1,Import,699,India,IND,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3828388933,,,4
+H5,2019,2019,2019,0,0,2,Export,699,India,IND,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5434291329,,,4
+H5,2019,2019,2019,0,0,1,Import,699,India,IND,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4707485184,,,4
+H5,2019,2019,2019,0,0,2,Export,699,India,IND,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5189870936,,,4
+H5,2019,2019,2019,0,0,1,Import,699,India,IND,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,16111284425,,,4
+H5,2019,2019,2019,0,0,2,Export,699,India,IND,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4653980478,,,4
+H5,2020,2020,2020,0,0,1,Import,124,Canada,CAN,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,4829809986,,,0
+H5,2020,2020,2020,0,0,2,Export,124,Canada,CAN,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2769585054,,,4
+H5,2020,2020,2020,0,0,1,Import,124,Canada,CAN,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,6715627010,,,0
+H5,2020,2020,2020,0,0,2,Export,124,Canada,CAN,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2753606141,,,4
+H5,2020,2020,2020,0,0,1,Import,124,Canada,CAN,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,7135907190,,,0
+H5,2020,2020,2020,0,0,2,Export,124,Canada,CAN,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3507857862,,,4
+H5,2020,2020,2020,0,0,1,Import,124,Canada,CAN,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,,,3706256808,,,0
+H5,2020,2020,2020,0,0,2,Export,124,Canada,CAN,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2767260435,,,4
+H5,2020,2020,2020,0,0,1,Import,251,France,FRA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3089739598,,,4
+H5,2020,2020,2020,0,0,2,Export,251,France,FRA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3546224385,,,4
+H5,2020,2020,2020,0,0,1,Import,251,France,FRA,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,48601325890,,,4
+H5,2020,2020,2020,0,0,2,Export,251,France,FRA,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,37139021766,,,4
+H5,2020,2020,2020,0,0,1,Import,251,France,FRA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3508387656,,,4
+H5,2020,2020,2020,0,0,2,Export,251,France,FRA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5475912075,,,4
+H5,2020,2020,2020,0,0,1,Import,251,France,FRA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4454709153,,,4
+H5,2020,2020,2020,0,0,2,Export,251,France,FRA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4825240445,,,4
+H5,2020,2020,2020,0,0,1,Import,381,Italy,ITA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2008783064,,,4
+H5,2020,2020,2020,0,0,2,Export,381,Italy,ITA,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4888292484,,,4
+H5,2020,2020,2020,0,0,1,Import,381,Italy,ITA,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,35778913756,,,4
+H5,2020,2020,2020,0,0,2,Export,381,Italy,ITA,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,51091454050,,,4
+H5,2020,2020,2020,0,0,1,Import,381,Italy,ITA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3582308939,,,4
+H5,2020,2020,2020,0,0,2,Export,381,Italy,ITA,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5359703879,,,4
+H5,2020,2020,2020,0,0,1,Import,381,Italy,ITA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4792928462,,,4
+H5,2020,2020,2020,0,0,2,Export,381,Italy,ITA,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3473529014,,,4
+H5,2020,2020,2020,0,0,1,Import,410,Rep. of Korea,KOR,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4397481959,,,4
+H5,2020,2020,2020,0,0,2,Export,410,Rep. of Korea,KOR,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5475978001,,,4
+H5,2020,2020,2020,0,0,1,Import,410,Rep. of Korea,KOR,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,5886834518,,,4
+H5,2020,2020,2020,0,0,2,Export,410,Rep. of Korea,KOR,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3043745635,,,4
+H5,2020,2020,2020,0,0,1,Import,410,Rep. of Korea,KOR,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,6649243499,,,4
+H5,2020,2020,2020,0,0,2,Export,410,Rep. of Korea,KOR,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3221268767,,,4
+H5,2020,2020,2020,0,0,1,Import,410,Rep. of Korea,KOR,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4899578452,,,4
+H5,2020,2020,2020,0,0,2,Export,410,Rep. of Korea,KOR,699,India,IND,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,11952242453,,,4
+H5,2020,2020,2020,0,0,1,Import,699,India,IND,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2744680320,,,4
+H5,2020,2020,2020,0,0,2,Export,699,India,IND,124,Canada,CAN,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2812148025,,,4
+H5,2020,2020,2020,0,0,1,Import,699,India,IND,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,2996351859,,,4
+H5,2020,2020,2020,0,0,2,Export,699,India,IND,251,France,FRA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4363547822,,,4
+H5,2020,2020,2020,0,0,1,Import,699,India,IND,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,3695117755,,,4
+H5,2020,2020,2020,0,0,2,Export,699,India,IND,381,Italy,ITA,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4347915871,,,4
+H5,2020,2020,2020,0,0,1,Import,699,India,IND,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,12168869004,,,4
+H5,2020,2020,2020,0,0,2,Export,699,India,IND,410,Rep. of Korea,KOR,,,,,,,,TOTAL,All Commodities,1,No Quantity,0,,,,0,,4516495886,,,4
