@@ -11,12 +11,12 @@ function makeFlightData(){
             .style("margin", 20);
         const width = 1100;
         const height = 580;
-        margin = 20;
+        margin = 25;
         const chartWidth = width - margin - margin;
         const chartHeight = height - margin - margin;
         var chartArea = svg
             .append("g")
-            .attr("transform", "translate(" + 20 + "," + 20 + ")");
+            .attr("transform", "translate(" + 25 + "," + 25 + ")");
 
         const airColor = ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"];
         const airExtent = [0, 1];
@@ -39,6 +39,7 @@ function makeFlightData(){
             createFirstChart(value);
             createBar(value-sliderW);
             createMonth();
+            createCountry();
         }
 
         function createBar(sliderWidth) {
@@ -53,7 +54,13 @@ function makeFlightData(){
             svg.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
             svg.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
         }
-
+        function createCountry(){
+            temp = 0;
+            airdata.forEach(d => {
+                svg.append("text").attr("x", 0).attr("y", 37+temp*26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+                temp = temp+1;
+            });
+        }
         function createMonth(){
             ini = -35;
             Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
