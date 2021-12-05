@@ -11,10 +11,6 @@
       stroke-width: 1px;
       fill: none;
     }
-
-    #incomeSlider {
-      width: 250px;
-    }
   </style>
 </head>
 <div>
@@ -57,8 +53,61 @@
       const map = svg
         .append("g")
         .attr("transform", "translate(" + 20 + "," + 20 + ")");
+      
+      // d3.csv("./vacc_processed.csv", function (csvdata) {
+      //   // console.log(new Date(csvdata.date))
+      //   const cur_date = new Date(csvdata.date);
+      //   // const diffTime = Math.abs(cur_date - start_day);
+      //   var diffDays = dateDiffInDays(start_day, cur_date)
+      //   country = csvdata.location
+      //   // console.log(typeof(country))
+      //   // console.log(data[diffDays])
+      //   // console.log(diffDays)
 
+      //   data[diffDays][country] = csvdata
+      //   // console.log(cur_date)
+
+
+      // });
+      start_day = new Date('2020-01-01')
+      days = 702
+      var data = {}
+      for (var i = 0; i < days; i++) {
+        data[i] = {}
+      }
+      async function start() {
+      //   start_day = new Date('2020-01-01')
+      // days = 702
+      // var data = {}
+      // for (var i = 0; i < days; i++) {
+      //   data[i] = {}
+      // }
+      
+
+      function dateDiffInDays(a, b) {
+        // Discard the time and time-zone information.
+        const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+        return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+      }
+      
+        const csv = await d3.csv("vacc_processed.csv");
+        for(var i = 0 ; i< csv.length; i++){
+          const cur_date = new Date(csv[i].date);
+        // const diffTime = Math.abs(cur_date - start_day);
+        var diffDays = dateDiffInDays(start_day, cur_date)
+        country = csv[i].location
+       
+
+        data[diffDays][country] = csv[i]
+        }
+        console.log(data[0]['Argentina'])
+      }
+      start()
+      
       const requestData = async function () {
+
         // svg
         // .append("rect")
         // .attr("x", 0)
@@ -77,14 +126,6 @@
           .geoEquirectangular()
           .fitSize([mapWidth, mapHeight], zips);
         var path = d3.geoPath().projection(projection);
-        function countryColor(country) {
-          console.log(country);
-          if (country == "China") {
-            return "#0754ed";
-          } else {
-            return "#ed2607";
-          }
-        }
         let outcomeSelect = 'case'
         map
           .selectAll("path.country")
@@ -101,40 +142,47 @@
           .attr("d", path);
         // .attr("stroke", "white")
         // .style("fill", '#374359')
-        let dateData = [];
-        start_day = new Date('2020-01-01')
-        days = 702
-        var data = {}
-        for (var i = 0; i < days; i++) {
-          data[i] = {}
-        }
-        console.log(data)
 
-        function dateDiffInDays(a, b) {
-          // Discard the time and time-zone information.
-          const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-          const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+        // d3.csv("./vacc_processed.csv", function (csvdata) {
+        //   // console.log(new Date(csvdata.date))
+        //   const cur_date = new Date(csvdata.date);
+        //   // const diffTime = Math.abs(cur_date - start_day);
+        //   var diffDays = dateDiffInDays(start_day, cur_date)
+        //   country = csvdata.location
+        //   // console.log(typeof(country))
+        //   // console.log(data[diffDays])
+        //   // console.log(diffDays)
 
-          return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
-        }
-        d3.csv("./vacc_processed.csv", function (csvdata) {
-          // console.log(new Date(csvdata.date))
-          const cur_date = new Date(csvdata.date);
-          // const diffTime = Math.abs(cur_date - start_day);
-          var diffDays = dateDiffInDays(start_day, cur_date)
-          country = csvdata.location
-          // console.log(data[diffDays])
-          // console.log(diffDays)
-
-          data[diffDays][country] = csvdata
-          // console.log(cur_date)
+        //   data[diffDays][country] = csvdata
+        //   // console.log(cur_date)
 
 
-        });
+        // });
+        // d3.csv("./vacc_processed.csv", function (csvdata) {
+        //   // console.log(new Date(csvdata.date))
+        //   const cur_date = new Date(csvdata.date);
+        //   // const diffTime = Math.abs(cur_date - start_day);
+        //   var diffDays = dateDiffInDays(start_day, cur_date)
+        //   country = csvdata.location
+        //   // console.log(typeof(country))
+        //   // console.log(data[diffDays])
+        //   // console.log(diffDays)
+
+        //   data[diffDays][country] = csvdata
+        //   // console.log(cur_date)
+
+
+        // });
+        // data1 = JSON.parse(JSON.stringify(data))
+        // str = data[0]
+        // console.log(Object.keys(data[0]))
+
+
         let btnGen = document.getElementById("case");
         btnGen.onclick = function () {
           outcomeSelect = "case";
           console.log("case")
+          console.log(data[0]['Argentina'].location)
           // emptyList();
           // createCount('gender');
           // reading('gender');
@@ -265,9 +313,9 @@
             .join("path")
             .style("fill", (d) => {
               cur_data = data[time][d.properties.name]
-              if (d.properties.name == 'China') {
-                console.log(cur_data)
-              }
+              // console.log(time,d.properties.name)
+              // console.log(data[0]["Argentina"])
+
               if (!cur_data) {
                 return "grey"
               }
@@ -288,109 +336,123 @@
         document.getElementById("timeSlider").onchange = function () {
           updateMap();
         };
-        console.log(data)
-        let tooltipWidth = 210;
-      let tooltipHeight = 40;
+        let tooltipWidth = 250;
+        let tooltipHeight = 40;
 
-      // At the end of lecture segment, we added this code to do the mouseover outline the "proper" way
-      let momesh = map
-        .append("path")
-        .attr("class", "mouseover outline")
-        .attr("d", "");
-      let tooltip = map
-        .append("g")
-        .attr("class", "tooltip")
-        .attr("visibility", "hidden");
-      tooltip
-        .append("rect")
-        .attr("fill", "black")
-        .attr("opacity", 0.9)
-        .attr("x", -tooltipWidth / 2.0)
-        .attr("y", 0)
-        .attr("width", tooltipWidth)
-        .attr("height", tooltipHeight)
-        .style("z-index", 9999);
-      let txt = tooltip
-        .append("text")
-        .attr("fill", "white")
-        .attr("text-anchor", "middle")
-        .attr("alignment-baseline", "hanging")
-        .attr("x", 0)
-        .attr("y", 2);
-      let txt2 = tooltip
-        .append("text")
-        .attr("fill", "white")
-        .attr("text-anchor", "middle")
-        .attr("alignment-baseline", "hanging")
-        .attr("x", 0)
-        .attr("y", 22);
-      function mouseEntersPlot() {
-        // Make tooltip visible
+        // At the end of lecture segment, we added this code to do the mouseover outline the "proper" way
+        let momesh = map
+          .append("path")
+          .attr("class", "mouseover outline")
+          .attr("d", "");
+        let tooltip = map
+          .append("g")
+          .attr("class", "tooltip")
+          .attr("visibility", "hidden");
+        tooltip
+          .append("rect")
+          .attr("fill", "black")
+          .attr("opacity", 0.9)
+          .attr("x", -tooltipWidth / 2.0)
+          .attr("y", 0)
+          .attr("width", tooltipWidth)
+          .attr("height", tooltipHeight)
+          .style("z-index", 9999);
+        let txt = tooltip
+          .append("text")
+          .attr("fill", "white")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "hanging")
+          .attr("x", 0)
+          .attr("y", 2);
+        let txt2 = tooltip
+          .append("text")
+          .attr("fill", "white")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "hanging")
+          .attr("x", 0)
+          .attr("y", 22);
+        function mouseEntersPlot() {
+          // Make tooltip visible
 
-        // Find the state SVG element and add stroke
-        let country = d3.select(this);
-        country_name = country.datum().properties.name;
-        let countryID = country.datum().id;
-        console.log(countryID);
+          // Find the state SVG element and add stroke
+          let country = d3.select(this);
+          country_name = country.datum().properties.name;
+          let countryID = country.datum().id;
+          console.log(countryID);
 
-        // var mo = topojson.mesh(
-        //   us_house,
-        //   us_house.objects["world_countries-world_countries"],
-        //   function (a, b) {
-        //     return a.id === countryID || b.id === countryID;
-        //   }
-        // );
-        // console.log(mo);
-        // // //  Then apply it to your special mesh that's on top of everything else
-        // momesh.datum(mo).attr("d", path);
+          // var mo = topojson.mesh(
+          //   us_house,
+          //   us_house.objects["world_countries-world_countries"],
+          //   function (a, b) {
+          //     return a.id === countryID || b.id === countryID;
+          //   }
+          // );
+          // console.log(mo);
+          // // //  Then apply it to your special mesh that's on top of everything else
+          // momesh.datum(mo).attr("d", path);
 
-        // Original version
-        country.attr("stroke","white")
-             .attr("stroke-width", 1)
-             .raise();
-        tooltip.style("visibility", "visible").style("z-index", 9999);
-        // Using .datum() to recover the data for the state element (because we used a .join() to make it)...
-        // ... get the name of the state and count
-        console.log(country.datum());
+          // Original version
+          country.attr("stroke", "white")
+            .attr("stroke-width", 1);
+          tooltip.style("visibility", "visible").style("z-index", 9999);
+          // Using .datum() to recover the data for the state element (because we used a .join() to make it)...
+          // ... get the name of the state and count
+          console.log(country.datum());
 
-        txt.text(country_name);
-        txt2.text("");
+          txt.text(country_name);
+          text2 = function (outcomeSelect) {
+            let time = Number(document.getElementById("timeSlider").value)
+            if (outcomeSelect == 'case') {
+              cases = Number.parseInt(data[time][country_name].total_cases)
+              return 'Cases: ' + cases
+            }
+            if (outcomeSelect == 'death') {
+              deaths = Number.parseInt(data[time][country_name].total_deaths)
+              return 'Deaths: ' + deaths
+            }
+            if (outcomeSelect == 'vaccination') {
+              vaccination = Number.parseInt(data[time][country_name].people_vaccinated_per_hundred)
+              return 'Vaccination: ' + vaccination + '%'
+            }
+          }
 
-        // You can use the geoPath() generator to do all sorts of helpful things
-        // let centroid = path.centroid( state.datum() );  // Get the pixel "center" of the state
-        let bounds = path.bounds(country.datum()); // Get the pixel boundaries of the state
-        // // In both cases here, the geoPath() is parsing the fancy topoJSON data to figure out pixels using the projection
+          txt2.text(text2(outcomeSelect));
 
-        // Place it at the bottom of the state, centered
-        let xPos = (bounds[0][0] + bounds[1][0]) / 2.0;
-        let yPos = bounds[1][1] - 15;
+          // You can use the geoPath() generator to do all sorts of helpful things
+          // let centroid = path.centroid( state.datum() );  // Get the pixel "center" of the state
+          let bounds = path.bounds(country.datum()); // Get the pixel boundaries of the state
+          // // In both cases here, the geoPath() is parsing the fancy topoJSON data to figure out pixels using the projection
 
-        // Transform the <g> group so that everything moves together easily
-        tooltip.attr("transform", `translate(${xPos},${yPos})`);
+          // Place it at the bottom of the state, centered
+          let xPos = (bounds[0][0] + bounds[1][0]) / 2.0;
+          let yPos = bounds[1][1] - 15;
 
-        // To fix the oscillation, we add this in the CSS for .mouseover
-      }
+          // Transform the <g> group so that everything moves together easily
+          tooltip.attr("transform", `translate(${xPos},${yPos})`);
 
-      function mouseLeavesPlot() {
-        // Hide when you leave a state
-        tooltip.style("visibility", "hidden");
+          // To fix the oscillation, we add this in the CSS for .mouseover
+        }
 
-        let country = d3.select(this);
+        function mouseLeavesPlot() {
+          // Hide when you leave a state
+          tooltip.style("visibility", "hidden");
 
-         country.attr("stroke","none")
-              .attr("stroke-width", 0)
-              .lower();
-         // }
+          let country = d3.select(this);
 
-        // Here we are hiding the mouseover mesh we added at the end of the lecture
-        momesh.attr("d", "");
-      }
+          country.attr("stroke", "none")
+            .attr("stroke-width", 0)
+            .lower();
+          // }
+
+          // Here we are hiding the mouseover mesh we added at the end of the lecture
+          momesh.attr("d", "");
+        }
         // map.selectAll(".country")
         //  .style("fill", d => countryColor(d.properties.name));
       };
-      
-      
-      
+
+
+
       requestData();
     </script>
   </body>

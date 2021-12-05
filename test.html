@@ -19,9 +19,13 @@
   </head>
 
   <script>
+async function start() {
+  const data = await d3.csv("test.csv");
+  for(var i = 0 ; i< data.length ; i++){
 
-d3.csv("./test.csv", function (error,csvdata) {
+    console.log(data[i]) ;} // [{"Hello": "world"}, …]
         
-        }
-      });
+}
+start()
+      
   </script>
