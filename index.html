@@ -1,0 +1,58 @@
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="./flight.js"></script>
+    <script src="./trade.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- for trade! Never change!!!!!!!!!!! -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- End trade -->
+</head>
+
+<body>
+
+    <div class="container">
+        <svg id="chord" height="850" width="850" style="background: rgb(255, 255, 255); margin-top:50px"></svg>
+        <br>
+        <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
+        <a href="#" class="button button2" id="19in" style="font-size: 20px">2019 Import</a>
+        <a href="#" class="button button3" id="20out" style="font-size: 20px">2020 Export</a>
+        <a href="#" class="button button4" id="19out" style="font-size: 20px">2019 Export</a>
+    </div>
+    <div class="container">
+        <div id="flight" height="600"> </div>
+        <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
+    </div>
+
+</body>
+
+<script>
+    const width = d3.select("#chord").attr("width");
+    const height = d3.select("#chord").attr("height");
+    const chordChart = d3.select("#chord").append("g");
+    tradeChart(0, 0);
+    let btn2019In = document.getElementById("19in");
+    btn2019In.onclick = function () {
+        tradeChart(0, 1);
+    };
+    let btn2020In = document.getElementById("20in");
+    btn2020In.onclick = function () {
+        tradeChart(1, 1);
+    };
+    let btn2020Ex = document.getElementById("20out");
+    btn2020Ex.onclick = function () {
+        tradeChart(2, 1);
+    };
+    let btn2019Ex = document.getElementById("19out");
+    btn2019Ex.onclick = function () {
+        tradeChart(3, 1);
+    };
+
+    makeFlightData();
+
+</script>
