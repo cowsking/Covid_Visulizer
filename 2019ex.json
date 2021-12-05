@@ -1,0 +1,683 @@
+{
+  "edges": [
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 2741161735
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 2442387356
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 4178075819
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 3648454814
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 4196426989
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 42046621688
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 5811574736
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 6005949684
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 5032274421
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 56604054128
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 5441160404
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 4468969024
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 5567578712
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 3392058041
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 3773364654
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 15096301413
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 2901550265
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 5434291329
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 5189870936
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 4653980478
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 17536423780
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 4577876225
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 9515985880
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 14923109357
+  },
+  {
+    "source": "CAN",
+    "sourceIndex": 0,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 336065000000
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 23438189772
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 78210511114
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 8639797412
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 38469023647
+  },
+  {
+    "source": "FRA",
+    "sourceIndex": 1,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 47114062296
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 14519417707
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 65509540985
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 8632719357
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 28248708891
+  },
+  {
+    "source": "ITA",
+    "sourceIndex": 2,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 50990414738
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 136203000000
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 8685311599
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 28420167955
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 5539086553
+  },
+  {
+    "source": "KOR",
+    "sourceIndex": 3,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 73598903629
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 17278832680
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 8569824588
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 4815593351
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 8797200000
+  },
+  {
+    "source": "IND",
+    "sourceIndex": 4,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 54288194268
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 79706091157
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 143224000000
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 62275958903
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 418584000000
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 108331000000
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 23241210158
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 88405572098
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 133546000000
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 134673000000
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 20226924569
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 13880140106
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 140499000000
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 30154261368
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 46352025713
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 8340854910
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "USA",
+    "targetIndex": 9,
+    "weight": 73528704687
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "CHN",
+    "targetIndex": 5,
+    "weight": 106627000000
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "DEU",
+    "targetIndex": 6,
+    "weight": 59797035615
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "JPN",
+    "targetIndex": 7,
+    "weight": 74650662375
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "GBR",
+    "targetIndex": 8,
+    "weight": 69100919866
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 36827417507
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 33104055875
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 33410760529
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 110985000000
+  },
+  {
+    "source": "CHN",
+    "sourceIndex": 5,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 74924285311
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 12313775297
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 119250000000
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 75801862536
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 19368616357
+  },
+  {
+    "source": "DEU",
+    "sourceIndex": 6,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 13439520022
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 8876492878
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 6843229286
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 4598800573
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 46265486184
+  },
+  {
+    "source": "JPN",
+    "sourceIndex": 7,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 10975132367
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 6726910779
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 31361516169
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 12713795122
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 4804211427
+  },
+  {
+    "source": "GBR",
+    "sourceIndex": 8,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 5878702713
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "CAN",
+    "targetIndex": 0,
+    "weight": 292338000000
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "FRA",
+    "targetIndex": 1,
+    "weight": 38751856499
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "ITA",
+    "targetIndex": 2,
+    "weight": 23788415899
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "KOR",
+    "targetIndex": 3,
+    "weight": 56894210754
+  },
+  {
+    "source": "USA",
+    "sourceIndex": 9,
+    "target": "IND",
+    "targetIndex": 4,
+    "weight": 34409574569
+  }],
+  "nodes":[{
+    "Affiliation": "america",
+    "Name": "Canada",
+    "Weight": 395628000000
+  },
+  {
+    "Affiliation": "europe",
+    "Name": "France",
+    "Weight": 253932000000
+  },
+  {
+    "Affiliation": "europe",
+    "Name": "Italy",
+    "Weight": 239447000000
+  },
+  {
+    "Affiliation": "asia",
+    "Name": "Korea",
+    "Weight": 280276000000
+  },
+  {
+    "Affiliation": "asia",
+    "Name": "India",
+    "Weight": 111929000000
+  },
+  {
+    "Affiliation": "asia",
+    "Name": "China",
+    "Weight": 993042000000
+  },
+  {
+    "Affiliation": "europe",
+    "Name": "Germany",
+    "Weight": 593698000000
+  },
+  {
+    "Affiliation": "asia",
+    "Name": "Japan",
+    "Weight": 386838000000
+  },
+  {
+    "Affiliation": "europe",
+    "Name": "Britain",
+    "Weight": 219861000000
+  },
+  {
+    "Affiliation": "america",
+    "Name": "USA",
+    "Weight": 756358000000
+  }
+]}
