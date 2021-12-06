@@ -12,6 +12,10 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- End trade -->
+
+    <!-- <script src="d3.js"></script> -->
+    <script src="./sortedBar.js"></script>
+
 </head>
 
 <body>
@@ -29,9 +33,19 @@
         <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
     </div>
 
+    <div class="container">
+        <svg id="barchart" height="500" width="800" style="margin-top:50px"> </svg>
+        <input type="range" min="0" max="702" width="500" value="300" class="" id="dateSlider">
+        <br>
+        <a href="#" class="button" id="vacc" style="font-size: 20px">Vaccined</a>
+        <a href="#" class="button button2" id="case" style="font-size: 20px">Case</a>
+        <a href="#" class="button button3" id="death" style="font-size: 20px">Death</a>
+    </div>
+
 </body>
 
 <script>
+
     const width = d3.select("#chord").attr("width");
     const height = d3.select("#chord").attr("height");
     const chordChart = d3.select("#chord").append("g");
@@ -54,5 +68,20 @@
     };
 
     makeFlightData();
+
+    sortedBar(1,0);
+    let btnvacc = document.getElementById("vacc");
+    btnvacc.onclick = function () {
+        sortedBar(2,1);
+    };
+    let btncase = document.getElementById("case");
+    btncase.onclick = function () {
+        sortedBar(0,1);
+    };
+    let btndead = document.getElementById("death");
+    btndead.onclick = function () {
+        sortedBar(1,1);
+    };
+    
 
 </script>
