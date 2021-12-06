@@ -20,6 +20,8 @@
     <a href="#" class="button button2" id="death" style="font-size: 20px">Death</a>
     <a href="#" class="button button3" id="vaccination" style="font-size: 20px">vaccination</a>
     <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width: "50px">
+    <g id="dateDisplay">2020-1-1</g>
+
   </div>
   <div id="main" height="700" width="1400"></div>
 
@@ -53,22 +55,8 @@
       const map = svg
         .append("g")
         .attr("transform", "translate(" + 20 + "," + 20 + ")");
-      
-      // d3.csv("./vacc_processed.csv", function (csvdata) {
-      //   // console.log(new Date(csvdata.date))
-      //   const cur_date = new Date(csvdata.date);
-      //   // const diffTime = Math.abs(cur_date - start_day);
-      //   var diffDays = dateDiffInDays(start_day, cur_date)
-      //   country = csvdata.location
-      //   // console.log(typeof(country))
-      //   // console.log(data[diffDays])
-      //   // console.log(diffDays)
 
-      //   data[diffDays][country] = csvdata
-      //   // console.log(cur_date)
-
-
-      // });
+  
       start_day = new Date('2020-01-01')
       days = 702
       var data = {}
@@ -76,46 +64,32 @@
         data[i] = {}
       }
       async function start() {
-      //   start_day = new Date('2020-01-01')
-      // days = 702
-      // var data = {}
-      // for (var i = 0; i < days; i++) {
-      //   data[i] = {}
-      // }
-      
+    
+        function dateDiffInDays(a, b) {
+          // Discard the time and time-zone information.
+          const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+          const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
-      function dateDiffInDays(a, b) {
-        // Discard the time and time-zone information.
-        const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-        const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+          return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+        }
 
-        return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
-      }
-      
         const csv = await d3.csv("vacc_processed.csv");
-        for(var i = 0 ; i< csv.length; i++){
+        for (var i = 0; i < csv.length; i++) {
           const cur_date = new Date(csv[i].date);
-        // const diffTime = Math.abs(cur_date - start_day);
-        var diffDays = dateDiffInDays(start_day, cur_date)
-        country = csv[i].location
-       
+          // const diffTime = Math.abs(cur_date - start_day);
+          var diffDays = dateDiffInDays(start_day, cur_date)
+          country = csv[i].location
 
-        data[diffDays][country] = csv[i]
+
+          data[diffDays][country] = csv[i]
         }
         console.log(data[0]['Argentina'])
       }
       start()
-      
+
       const requestData = async function () {
 
-        // svg
-        // .append("rect")
-        // .attr("x", 0)
-        // .attr("y", 0)
-        // .attr("width", width)
-        // .attr("height", height)
-        // .style("fill", '#2A2C39')
-        // ;
+     
         const us_house = await d3.json("./world_countries.topojson");
 
         var zips = topojson.feature(us_house, us_house.objects["world_countries-world_countries"]);
@@ -140,54 +114,16 @@
           .datum(zipsMesh)
           .attr("class", "outline")
           .attr("d", path);
-        // .attr("stroke", "white")
-        // .style("fill", '#374359')
+        
 
-        // d3.csv("./vacc_processed.csv", function (csvdata) {
-        //   // console.log(new Date(csvdata.date))
-        //   const cur_date = new Date(csvdata.date);
-        //   // const diffTime = Math.abs(cur_date - start_day);
-        //   var diffDays = dateDiffInDays(start_day, cur_date)
-        //   country = csvdata.location
-        //   // console.log(typeof(country))
-        //   // console.log(data[diffDays])
-        //   // console.log(diffDays)
-
-        //   data[diffDays][country] = csvdata
-        //   // console.log(cur_date)
-
-
-        // });
-        // d3.csv("./vacc_processed.csv", function (csvdata) {
-        //   // console.log(new Date(csvdata.date))
-        //   const cur_date = new Date(csvdata.date);
-        //   // const diffTime = Math.abs(cur_date - start_day);
-        //   var diffDays = dateDiffInDays(start_day, cur_date)
-        //   country = csvdata.location
-        //   // console.log(typeof(country))
-        //   // console.log(data[diffDays])
-        //   // console.log(diffDays)
-
-        //   data[diffDays][country] = csvdata
-        //   // console.log(cur_date)
-
-
-        // });
-        // data1 = JSON.parse(JSON.stringify(data))
-        // str = data[0]
-        // console.log(Object.keys(data[0]))
 
 
         let btnGen = document.getElementById("case");
         btnGen.onclick = function () {
           outcomeSelect = "case";
           console.log("case")
-          console.log(data[0]['Argentina'].location)
-          // emptyList();
-          // createCount('gender');
-          // reading('gender');
-          // pieChart(dict);
-          // updateMap();
+   
+          updateMap();
         };
 
         let btnPar = document.getElementById("death");
@@ -195,11 +131,7 @@
           outcomeSelect = "death";
           console.log("death")
 
-          // emptyList();
-          // createCount("party");
-          // reading("party");
-          // pieChart(dict);
-          // updateMap();
+          updateMap();
         };
 
         let btnRac = document.getElementById("vaccination");
@@ -208,11 +140,8 @@
           console.log("vaccination")
 
 
-          // emptyList();
-          // createCount("race");
-          // reading("race");
-          // pieChart(dict);
-          // updateMap();
+          
+          updateMap();
         };
         location_list = ['Afghanistan', 'Africa', 'Albania', 'Algeria', 'Andorra', 'Angola',
           'Anguilla', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba',
@@ -311,15 +240,21 @@
             .selectAll("path.country")
             .data(zips.features)
             .join("path")
+            .style("fill", 'white')
+
+
+          map
+            .selectAll("path.country")
+            .data(zips.features)
+            .join("path")
             .style("fill", (d) => {
               cur_data = data[time][d.properties.name]
-              // console.log(time,d.properties.name)
-              // console.log(data[0]["Argentina"])
-
-              if (!cur_data) {
+           
+              if (cur_data == undefined) {
                 return "grey"
               }
               else {
+                
                 return outcomeFunctions[outcomeSelect](cur_data)
 
               }
@@ -327,14 +262,20 @@
             )
             .on("mouseover", mouseEntersPlot)
             .on("mouseout", mouseLeavesPlot);
-          // .style("fill", data[time]['China']
-          // )
 
-          //   .on("mouseover", mouseEntersPlot)
-          //   .on("mouseout", mouseLeavesPlot);
         };
         document.getElementById("timeSlider").onchange = function () {
           updateMap();
+        };
+        document.getElementById("timeSlider").oninput = function () {
+          time = (Number(document.getElementById("timeSlider").value) + 1) * 1000 * 60 * 60 * 24 + start_day.getTime();
+          time = new Date(time)
+          year = String(time.getFullYear());
+          month = String(time.getMonth()+1);
+          day = String(time.getDate());
+          console.log(year+'-'+ month+'-'+day)
+          document.getElementById("dateDisplay").innerHTML =
+          year+'-'+ month+'-'+day;
         };
         let tooltipWidth = 250;
         let tooltipHeight = 40;
@@ -373,6 +314,7 @@
           .attr("y", 22);
         function mouseEntersPlot() {
           // Make tooltip visible
+          tooltip.style("visibility", "visible")
 
           // Find the state SVG element and add stroke
           let country = d3.select(this);
@@ -380,28 +322,15 @@
           let countryID = country.datum().id;
           console.log(countryID);
 
-          // var mo = topojson.mesh(
-          //   us_house,
-          //   us_house.objects["world_countries-world_countries"],
-          //   function (a, b) {
-          //     return a.id === countryID || b.id === countryID;
-          //   }
-          // );
-          // console.log(mo);
-          // // //  Then apply it to your special mesh that's on top of everything else
-          // momesh.datum(mo).attr("d", path);
 
-          // Original version
-          country.attr("stroke", "white")
-            .attr("stroke-width", 1);
-          tooltip.style("visibility", "visible").style("z-index", 9999);
-          // Using .datum() to recover the data for the state element (because we used a .join() to make it)...
-          // ... get the name of the state and count
-          console.log(country.datum());
+
 
           txt.text(country_name);
           text2 = function (outcomeSelect) {
             let time = Number(document.getElementById("timeSlider").value)
+            if (data[time][country_name] == undefined) {
+              return ''
+            }
             if (outcomeSelect == 'case') {
               cases = Number.parseInt(data[time][country_name].total_cases)
               return 'Cases: ' + cases
@@ -418,37 +347,36 @@
 
           txt2.text(text2(outcomeSelect));
 
-          // You can use the geoPath() generator to do all sorts of helpful things
-          // let centroid = path.centroid( state.datum() );  // Get the pixel "center" of the state
-          let bounds = path.bounds(country.datum()); // Get the pixel boundaries of the state
-          // // In both cases here, the geoPath() is parsing the fancy topoJSON data to figure out pixels using the projection
 
-          // Place it at the bottom of the state, centered
+      
+          let bounds = path.bounds(country.datum()); 
+
           let xPos = (bounds[0][0] + bounds[1][0]) / 2.0;
           let yPos = bounds[1][1] - 15;
 
-          // Transform the <g> group so that everything moves together easily
           tooltip.attr("transform", `translate(${xPos},${yPos})`);
 
-          // To fix the oscillation, we add this in the CSS for .mouseover
+          var mo = topojson.mesh(
+            us_house,
+            us_house.objects["world_countries-world_countries"],
+            function (a, b) {
+              return a.id === countryID || b.id === countryID;
+            }
+          );
+
+          momesh.datum(mo).attr("d", path);
         }
 
         function mouseLeavesPlot() {
-          // Hide when you leave a state
           tooltip.style("visibility", "hidden");
 
           let country = d3.select(this);
 
-          country.attr("stroke", "none")
-            .attr("stroke-width", 0)
-            .lower();
-          // }
+  
 
-          // Here we are hiding the mouseover mesh we added at the end of the lecture
           momesh.attr("d", "");
         }
-        // map.selectAll(".country")
-        //  .style("fill", d => countryColor(d.properties.name));
+    
       };
 
 
