@@ -1,5 +1,5 @@
 function makeFlightData(){
-    const requestData = async function () {
+    var requestData = async function () {
         const airdata = await d3.json("./airline_percentage.json");
         console.log(airdata);
 

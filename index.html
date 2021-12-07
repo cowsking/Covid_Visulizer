@@ -1,26 +1,57 @@
 <head>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://d3js.org/topojson.v3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-    <script src="./flight.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+
+   <!-- for trade! Never change!!!!!!!!!!! -->
+   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,700" rel="stylesheet">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+   <script src="https://d3js.org/d3.v7.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+   <!-- End trade -->
+
+   <!-- <script src="d3.js"></script> -->
+   <script src="./sortedBar2.js"></script>
+   <script src="./flight.js"></script>
     <script src="./trade.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <style>
+    .country {
+      fill: #374359;
+    }
 
-    <!-- for trade! Never change!!!!!!!!!!! -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- End trade -->
-
-    <!-- <script src="d3.js"></script> -->
-    <script src="./sortedBar.js"></script>
-
+    .outline {
+      stroke: #95989f;
+      stroke-width: 1px;
+      fill: none;
+    }
+  </style>
 </head>
+<div>
+  <div class="container">
+    <h3>Select by type</h3>
+    <a href="#" class="button" id="case" style="font-size: 20px">Case</a>
+    <a href="#" class="button button2" id="death" style="font-size: 20px"
+      >Death</a
+    >
+    <a href="#" class="button button3" id="vaccination" style="font-size: 20px"
+      >vaccination</a
+    >
+    <input type="range" min="0" max="701" value="0" class="slider"
+    id="timeSlider" width: "50px">
+    <g id="dateDisplay">2020-1-1</g>
+  </div>
+  <div id="main" height="700" width="1400"></div>
+  <div class="container">
+    <svg id="barchart" height="500" width="800" style="margin-top:50px"> </svg>
+    <!-- <input type="range" min="0" max="701" width="500" value="300" class="" id="dateSlider"> -->
+    <!-- <g id="dateDisplay">2020-1-1</g> -->
+    <br>
+    <!-- <a href="#" class="button" id="vacc" style="font-size: 20px">Vaccined</a>
+    <a href="#" class="button button2" id="case" style="font-size: 20px">Case</a>
+    <a href="#" class="button button3" id="death" style="font-size: 20px">Death</a> -->
+</div>
 
-<body>
-
-    <div class="container">
+   <div class="container">
         <svg id="chord" height="850" width="850" style="background: rgb(255, 255, 255); margin-top:50px"></svg>
         <br>
         <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
@@ -33,22 +64,551 @@
         <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
     </div>
 
-    <div class="container">
-        <svg id="barchart" height="500" width="800" style="margin-top:50px"> </svg>
-        <input type="range" min="0" max="702" width="500" value="300" class="" id="dateSlider">
-        <br>
-        <a href="#" class="button" id="vacc" style="font-size: 20px">Vaccined</a>
-        <a href="#" class="button button2" id="case" style="font-size: 20px">Case</a>
-        <a href="#" class="button button3" id="death" style="font-size: 20px">Death</a>
-    </div>
 
-</body>
+   
+  <body>
+    <script>
+      const main = d3.select("div#main");
 
-<script>
+      //find width and height of window
+      const docWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+      const docHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
 
-    const width = d3.select("#chord").attr("width");
-    const height = d3.select("#chord").attr("height");
-    const chordChart = d3.select("#chord").append("g");
+      //create graph dimensions
+      const svg = main
+        .append("svg")
+        .attr("width", docWidth * 0.6)
+        .attr("height", docHeight)
+        .style("background", "#0e151f")
+        .style("margin", 0);
+
+      const width = svg.attr("width");
+      const height = svg.attr("height");
+      margin = 20;
+      const mapWidth = width - margin - margin;
+      const mapHeight = height - margin - margin;
+      const map = svg
+        .append("g")
+        .attr("transform", "translate(" + 20 + "," + 20 + ")");
+
+      start_day = new Date("2020-01-01");
+      days = 702;
+      var data = {};
+      for (var i = 0; i < days; i++) {
+        data[i] = {};
+      }
+      async function start() {
+        function dateDiffInDays(a, b) {
+          // Discard the time and time-zone information.
+          const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+          const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+          return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+        }
+
+        const csv = await d3.csv("vacc_processed.csv");
+        for (var i = 0; i < csv.length; i++) {
+          const cur_date = new Date(csv[i].date);
+          // const diffTime = Math.abs(cur_date - start_day);
+          var diffDays = dateDiffInDays(start_day, cur_date);
+          country = csv[i].location;
+
+          data[diffDays][country] = csv[i];
+        }
+        console.log(data[0]["Argentina"]);
+      
+      
+      }
+      start();
+
+      const requestData = async function () {
+        const us_house = await d3.json("./world_countries.topojson");
+
+        var zips = topojson.feature(
+          us_house,
+          us_house.objects["world_countries-world_countries"]
+        );
+        var zipsMesh = topojson.mesh(
+          us_house,
+          us_house.objects["world_countries-world_countries"]
+        );
+        console.log(zips);
+
+        var projection = d3
+          .geoEquirectangular()
+          .fitSize([mapWidth, mapHeight], zips);
+        var path = d3.geoPath().projection(projection);
+        let outcomeSelect = "case";
+        map
+          .selectAll("path.country")
+          .data(zips.features)
+          .join("path")
+          .attr("class", "country")
+          .attr("note", (d) => d.properties.name)
+          //  .style("fill", d => countryColor(d.properties.name))
+          .attr("d", path);
+        map
+          .append("path")
+          .datum(zipsMesh)
+          .attr("class", "outline")
+          .attr("d", path);
+
+        let btnGen = document.getElementById("case");
+        btnGen.onclick = function () {
+          outcomeSelect = "case";
+          console.log("case");
+
+          updateMap();
+          sortedBar(1,1);
+        };
+
+        let btnPar = document.getElementById("death");
+        btnPar.onclick = function () {
+          outcomeSelect = "death";
+          console.log("death");
+          
+          updateMap();
+          sortedBar(0,1);
+        };
+
+        let btnRac = document.getElementById("vaccination");
+        btnRac.onclick = function () {
+          outcomeSelect = "vaccination";
+          console.log("vaccination");
+
+          updateMap();
+          sortedBar(2,1);
+        };
+        location_list = [
+          "Afghanistan",
+          "Africa",
+          "Albania",
+          "Algeria",
+          "Andorra",
+          "Angola",
+          "Anguilla",
+          "Antigua and Barbuda",
+          "Argentina",
+          "Armenia",
+          "Aruba",
+          "Asia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Barbados",
+          "Belarus",
+          "Belgium",
+          "Belize",
+          "Benin",
+          "Bermuda",
+          "Bhutan",
+          "Bolivia",
+          "Bonaire Sint Eustatius and Saba",
+          "Bosnia and Herzegovina",
+          "Botswana",
+          "Brazil",
+          "British Virgin Islands",
+          "Brunei",
+          "Bulgaria",
+          "Burkina Faso",
+          "Burundi",
+          "Cambodia",
+          "Cameroon",
+          "Canada",
+          "Cape Verde",
+          "Cayman Islands",
+          "Central African Republic",
+          "Chad",
+          "Chile",
+          "China",
+          "Colombia",
+          "Comoros",
+          "Congo",
+          "Cook Islands",
+          "Costa Rica",
+          "Cote d'Ivoire",
+          "Croatia",
+          "Cuba",
+          "Curacao",
+          "Cyprus",
+          "Czechia",
+          "Democratic Republic of Congo",
+          "Denmark",
+          "Djibouti",
+          "Dominica",
+          "Dominican Republic",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "Equatorial Guinea",
+          "Eritrea",
+          "Estonia",
+          "Eswatini",
+          "Ethiopia",
+          "Europe",
+          "European Union",
+          "Faeroe Islands",
+          "Falkland Islands",
+          "Fiji",
+          "Finland",
+          "France",
+          "French Polynesia",
+          "Gabon",
+          "Gambia",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Gibraltar",
+          "Greece",
+          "Greenland",
+          "Grenada",
+          "Guatemala",
+          "Guernsey",
+          "Guinea",
+          "Guinea-Bissau",
+          "Guyana",
+          "Haiti",
+          "High income",
+          "Honduras",
+          "Hong Kong",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "International",
+          "Iran",
+          "Iraq",
+          "Ireland",
+          "Isle of Man",
+          "Israel",
+          "Italy",
+          "Jamaica",
+          "Japan",
+          "Jersey",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Kiribati",
+          "Kosovo",
+          "Kuwait",
+          "Kyrgyzstan",
+          "Laos",
+          "Latvia",
+          "Lebanon",
+          "Lesotho",
+          "Liberia",
+          "Libya",
+          "Liechtenstein",
+          "Lithuania",
+          "Low income",
+          "Lower middle income",
+          "Luxembourg",
+          "Macao",
+          "Madagascar",
+          "Malawi",
+          "Malaysia",
+          "Maldives",
+          "Mali",
+          "Malta",
+          "Marshall Islands",
+          "Mauritania",
+          "Mauritius",
+          "Mexico",
+          "Micronesia (country)",
+          "Moldova",
+          "Monaco",
+          "Mongolia",
+          "Montenegro",
+          "Montserrat",
+          "Morocco",
+          "Mozambique",
+          "Myanmar",
+          "Namibia",
+          "Nauru",
+          "Nepal",
+          "Netherlands",
+          "New Caledonia",
+          "New Zealand",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Niue",
+          "North America",
+          "North Macedonia",
+          "Northern Cyprus",
+          "Norway",
+          "Oceania",
+          "Oman",
+          "Pakistan",
+          "Palau",
+          "Palestine",
+          "Panama",
+          "Papua New Guinea",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Pitcairn",
+          "Poland",
+          "Portugal",
+          "Qatar",
+          "Romania",
+          "Russia",
+          "Rwanda",
+          "Saint Helena",
+          "Saint Kitts and Nevis",
+          "Saint Lucia",
+          "Saint Vincent and the Grenadines",
+          "Samoa",
+          "San Marino",
+          "Sao Tome and Principe",
+          "Saudi Arabia",
+          "Senegal",
+          "Serbia",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapore",
+          "Sint Maarten (Dutch part)",
+          "Slovakia",
+          "Slovenia",
+          "Solomon Islands",
+          "Somalia",
+          "South Africa",
+          "South America",
+          "South Korea",
+          "South Sudan",
+          "Spain",
+          "Sri Lanka",
+          "Sudan",
+          "Suriname",
+          "Sweden",
+          "Switzerland",
+          "Syria",
+          "Taiwan",
+          "Tajikistan",
+          "Tanzania",
+          "Thailand",
+          "Timor",
+          "Togo",
+          "Tokelau",
+          "Tonga",
+          "Trinidad and Tobago",
+          "Tunisia",
+          "Turkey",
+          "Turkmenistan",
+          "Turks and Caicos Islands",
+          "Tuvalu",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "United Kingdom",
+          "United States",
+          "Upper middle income",
+          "Uruguay",
+          "Uzbekistan",
+          "Vanuatu",
+          "Vatican",
+          "Venezuela",
+          "Vietnam",
+          "Wallis and Futuna",
+          "World",
+          "Yemen",
+          "Zambia",
+          "Zimbabwe",
+        ];
+
+        caseColorScale = d3
+          .scaleLog()
+          .domain([0.001, 251363.345])
+          .range(["#ACE8D4", "#00726A"]);
+        deathColorScale = d3
+          .scaleLinear()
+          .domain([0, 6033.739])
+          .range(["#ACE8D4", "#00726A"]);
+        vaccinationColorScale = d3
+          .scaleLinear()
+          .domain([0, 121.53])
+          .range(["#ACE8D4", "#00726A"]);
+
+        var outcomeFunctions = {
+          case: function (d) {
+            if (!d.total_cases_per_million) {
+              return "grey";
+            }
+            return caseColorScale(d.total_cases_per_million);
+          },
+          death: function (d) {
+            if (!d.total_deaths_per_million) {
+              return "grey";
+            }
+            return deathColorScale(d.total_deaths_per_million);
+          },
+          vaccination: function (d) {
+            if (!d.people_vaccinated_per_hundred) {
+              return "grey";
+            }
+            return vaccinationColorScale(d.people_vaccinated_per_hundred);
+          },
+        };
+        updateMap = function () {
+          let time = Number(document.getElementById("timeSlider").value);
+          // cur_data = data[time]['China']
+          // if (!cur_data){
+          //   console.log('not!!!')
+          // }
+          // res = outcomeFunctions[outcomeSelect](cur_data)
+          // console.log(res)
+          // createCount(outcomeSelect);
+          map
+            .selectAll("path.country")
+            .data(zips.features)
+            .join("path")
+            .style("fill", "white");
+
+          map
+            .selectAll("path.country")
+            .data(zips.features)
+            .join("path")
+            .style("fill", (d) => {
+              cur_data = data[time][d.properties.name];
+
+              if (cur_data == undefined) {
+                return "grey";
+              } else {
+                return outcomeFunctions[outcomeSelect](cur_data);
+              }
+            })
+            .on("mouseover", mouseEntersPlot)
+            .on("mouseout", mouseLeavesPlot);
+        };
+        document.getElementById("timeSlider").onchange = function () {
+          updateMap();
+        };
+        document.getElementById("timeSlider").oninput = function () {
+          time =
+            (Number(document.getElementById("timeSlider").value) + 1) *
+              1000 *
+              60 *
+              60 *
+              24 +
+            start_day.getTime();
+          time = new Date(time);
+          year = String(time.getFullYear());
+          month = String(time.getMonth() + 1);
+          day = String(time.getDate());
+          console.log(year + "-" + month + "-" + day);
+          document.getElementById("dateDisplay").innerHTML =
+            year + "-" + month + "-" + day;
+        };
+        let tooltipWidth = 250;
+        let tooltipHeight = 40;
+
+        // At the end of lecture segment, we added this code to do the mouseover outline the "proper" way
+        let momesh = map
+          .append("path")
+          .attr("class", "mouseover outline")
+          .attr("d", "");
+        let tooltip = map
+          .append("g")
+          .attr("class", "tooltip")
+          .attr("visibility", "hidden");
+        tooltip
+          .append("rect")
+          .attr("fill", "black")
+          .attr("opacity", 0.9)
+          .attr("x", -tooltipWidth / 2.0)
+          .attr("y", 0)
+          .attr("width", tooltipWidth)
+          .attr("height", tooltipHeight)
+          .style("z-index", 9999);
+        let txt = tooltip
+          .append("text")
+          .attr("fill", "white")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "hanging")
+          .attr("x", 0)
+          .attr("y", 2);
+        let txt2 = tooltip
+          .append("text")
+          .attr("fill", "white")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "hanging")
+          .attr("x", 0)
+          .attr("y", 22);
+        function mouseEntersPlot() {
+          // Make tooltip visible
+          tooltip.style("visibility", "visible");
+
+          // Find the state SVG element and add stroke
+          let country = d3.select(this);
+          country_name = country.datum().properties.name;
+          let countryID = country.datum().id;
+          console.log(countryID);
+
+          txt.text(country_name);
+          text2 = function (outcomeSelect) {
+            let time = Number(document.getElementById("timeSlider").value);
+            if (data[time][country_name] == undefined) {
+              return "";
+            }
+            if (outcomeSelect == "case") {
+              cases = Number.parseInt(data[time][country_name].total_cases);
+              return "Cases: " + cases;
+            }
+            if (outcomeSelect == "death") {
+              deaths = Number.parseInt(data[time][country_name].total_deaths);
+              return "Deaths: " + deaths;
+            }
+            if (outcomeSelect == "vaccination") {
+              vaccination = Number.parseInt(
+                data[time][country_name].people_vaccinated_per_hundred
+              );
+              return "Vaccination: " + vaccination + "%";
+            }
+          };
+
+          txt2.text(text2(outcomeSelect));
+
+          let bounds = path.bounds(country.datum());
+
+          let xPos = (bounds[0][0] + bounds[1][0]) / 2.0;
+          let yPos = bounds[1][1] - 15;
+
+          tooltip.attr("transform", `translate(${xPos},${yPos})`);
+
+          var mo = topojson.mesh(
+            us_house,
+            us_house.objects["world_countries-world_countries"],
+            function (a, b) {
+              return a.id === countryID || b.id === countryID;
+            }
+          );
+
+          momesh.datum(mo).attr("d", path);
+        }
+
+        function mouseLeavesPlot() {
+          tooltip.style("visibility", "hidden");
+
+          let country = d3.select(this);
+
+          momesh.attr("d", "");
+        }
+      };
+
+      requestData();
+
+    //   var width = d3.select("#chord").attr("width");
+    // var height = d3.select("#chord").attr("height");
+    var chordChart = d3.select("#chord").append("g");
     tradeChart(0, 0);
     let btn2019In = document.getElementById("19in");
     btn2019In.onclick = function () {
@@ -69,19 +629,19 @@
 
     makeFlightData();
 
-    sortedBar(1,0);
-    let btnvacc = document.getElementById("vacc");
-    btnvacc.onclick = function () {
-        sortedBar(2,1);
-    };
-    let btncase = document.getElementById("case");
-    btncase.onclick = function () {
-        sortedBar(0,1);
-    };
-    let btndead = document.getElementById("death");
-    btndead.onclick = function () {
-        sortedBar(1,1);
-    };
-    
-
-</script>
+    // sortedBar(1,0);
+    // let btnvacc = document.getElementById("vacc");
+    // btnvacc.onclick = function () {
+    //     sortedBar(2,1);
+    // };
+    // let btncase = document.getElementById("case");
+    // btncase.onclick = function () {
+    //     sortedBar(0,1);
+    // };
+    // let btndead = document.getElementById("death");
+    // btndead.onclick = function () {
+    //     sortedBar(1,1);
+    // };
+    </script>
+  </body>
+</div>

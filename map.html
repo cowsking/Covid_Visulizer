@@ -1,6 +1,19 @@
 <head>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://d3js.org/topojson.v3.min.js"></script>
+
+   <!-- for trade! Never change!!!!!!!!!!! -->
+   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,700" rel="stylesheet">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+   <script src="https://d3js.org/d3.v7.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+   <!-- End trade -->     
+
+   <!-- <script src="d3.js"></script> -->
+   <script src="./sortedBar2.js"></script>
+   <script src="./flight.js"></script>
+    <script src="./trade.js"></script>
   <style>
     .country {
       fill: #374359;
@@ -28,7 +41,31 @@
     <g id="dateDisplay">2020-1-1</g>
   </div>
   <div id="main" height="700" width="1400"></div>
+  <div class="container">
+    <svg id="barchart" height="500" width="800" style="margin-top:50px"> </svg>
+    <input type="range" min="0" max="701" width="500" value="300" class="" id="dateSlider">
+    <g id="dateDisplay">2020-1-1</g>
+    <br>
+    <!-- <a href="#" class="button" id="vacc" style="font-size: 20px">Vaccined</a>
+    <a href="#" class="button button2" id="case" style="font-size: 20px">Case</a>
+    <a href="#" class="button button3" id="death" style="font-size: 20px">Death</a> -->
+</div>
 
+   <div class="container">
+        <svg id="chord" height="850" width="850" style="background: rgb(255, 255, 255); margin-top:50px"></svg>
+        <br>
+        <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
+        <a href="#" class="button button2" id="19in" style="font-size: 20px">2019 Import</a>
+        <a href="#" class="button button3" id="20out" style="font-size: 20px">2020 Export</a>
+        <a href="#" class="button button4" id="19out" style="font-size: 20px">2019 Export</a>
+    </div>
+    <div class="container">
+        <div id="flight" height="600"> </div>
+        <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
+    </div>
+
+
+   
   <body>
     <script>
       const main = d3.select("div#main");
@@ -128,14 +165,16 @@
           console.log("case");
 
           updateMap();
+          sortedBar(1,1);
         };
 
         let btnPar = document.getElementById("death");
         btnPar.onclick = function () {
           outcomeSelect = "death";
           console.log("death");
-
+          
           updateMap();
+          sortedBar(0,1);
         };
 
         let btnRac = document.getElementById("vaccination");
@@ -144,6 +183,7 @@
           console.log("vaccination");
 
           updateMap();
+          sortedBar(2,1);
         };
         location_list = [
           "Afghanistan",
@@ -565,6 +605,43 @@
       };
 
       requestData();
+
+    //   var width = d3.select("#chord").attr("width");
+    // var height = d3.select("#chord").attr("height");
+    var chordChart = d3.select("#chord").append("g");
+    tradeChart(0, 0);
+    let btn2019In = document.getElementById("19in");
+    btn2019In.onclick = function () {
+        tradeChart(0, 1);
+    };
+    let btn2020In = document.getElementById("20in");
+    btn2020In.onclick = function () {
+        tradeChart(1, 1);
+    };
+    let btn2020Ex = document.getElementById("20out");
+    btn2020Ex.onclick = function () {
+        tradeChart(2, 1);
+    };
+    let btn2019Ex = document.getElementById("19out");
+    btn2019Ex.onclick = function () {
+        tradeChart(3, 1);
+    };
+
+    makeFlightData();
+
+    // sortedBar(1,0);
+    // let btnvacc = document.getElementById("vacc");
+    // btnvacc.onclick = function () {
+    //     sortedBar(2,1);
+    // };
+    // let btncase = document.getElementById("case");
+    // btncase.onclick = function () {
+    //     sortedBar(0,1);
+    // };
+    // let btndead = document.getElementById("death");
+    // btndead.onclick = function () {
+    //     sortedBar(1,1);
+    // };
     </script>
   </body>
 </div>

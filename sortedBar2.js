@@ -1,15 +1,4 @@
-function sortedBar(choose,j) {
-
-    choice=['total_cases','total_deaths','people_fully_vaccinated_per_hundred'];
-    // console.log(choice[0]);
-    // let dateData = [];
-    // start_day = new Date('2020-01-01')
-    // days = 702
-    // var data = {}
-    // for (var i = 0; i < days; i++) {
-    //     data[i] = {}
-    // }
-
+function sortedBar(choose, j) {
     if (j == 1){
         // barchart.selectAll('rect').remove();
         // barchart.selectAll('text').remove();
@@ -19,85 +8,12 @@ function sortedBar(choose,j) {
         barchart.selectAll('g').remove();
     }
 
-    // function dateDiffInDays(a, b) {
-    //     // Discard the time and time-zone information.
-    //     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-    //     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-
-    //     return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
-    // }
-    // d3.csv("./vacc_processed.csv", function (csvdata) {
-    //     // console.log(new Date(csvdata.date))
-    //     const cur_date = new Date(csvdata.date);
-    //     // const diffTime = Math.abs(cur_date - start_day);
-    //     var diffDays = dateDiffInDays(start_day, cur_date)
-    //     country = String(csvdata.location)
-    //     // console.log(data[diffDays])
-    //     // console.log(diffDays)
-
-    //     data[diffDays][country] = csvdata
-    //     // console.log(cur_date)
-    // });
-    location_list = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
-        'Anguilla', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba',
-        'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain',
-        'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin',
-        'Bermuda', 'Bhutan', 'Bolivia', 'Bonaire Sint Eustatius and Saba',
-        'Bosnia and Herzegovina', 'Botswana', 'Brazil',
-        'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina Faso',
-        'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde',
-        'Cayman Islands', 'Central African Republic', 'Chad', 'Chile',
-        'China', 'Colombia', 'Comoros', 'Congo', 'Cook Islands',
-        'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cuba', 'Curacao',
-        'Cyprus', 'Czechia', 'Democratic Republic of Congo', 'Denmark',
-        'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt',
-        'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia',
-        'Eswatini', 'Ethiopia',
-        'Faeroe Islands', 'Falkland Islands', 'Fiji', 'Finland', 'France',
-        'French Polynesia', 'Gabon', 'Gambia', 'Georgia', 'Germany',
-        'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada',
-        'Guatemala', 'Guernsey', 'Guinea', 'Guinea-Bissau', 'Guyana',
-        'Haiti', 'Honduras', 'Hong Kong', 'Hungary',
-        'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq',
-        'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Jamaica', 'Japan',
-        'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kosovo',
-        'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
-        'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Low income',
-        'Luxembourg', 'Macao', 'Madagascar',
-        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta',
-        'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico',
-        'Micronesia (country)', 'Moldova', 'Monaco', 'Mongolia',
-        'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Myanmar',
-        'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Caledonia',
-        'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue',
-        'North Macedonia', 'Northern Cyprus', 'Norway',
-        'Oman', 'Pakistan', 'Palau', 'Palestine', 'Panama',
-        'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Pitcairn',
-        'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda',
-        'Saint Helena', 'Saint Kitts and Nevis', 'Saint Lucia',
-        'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
-        'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia',
-        'Seychelles', 'Sierra Leone', 'Singapore',
-        'Sint Maarten (Dutch part)', 'Slovakia', 'Slovenia',
-        'Solomon Islands', 'Somalia', 'South Africa',
-        'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan',
-        'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan',
-        'Tajikistan', 'Tanzania', 'Thailand', 'Timor', 'Togo', 'Tokelau',
-        'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey',
-        'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu', 'Uganda',
-        'Ukraine', 'United Arab Emirates', 'United Kingdom',
-        'United States', 'Uruguay', 'Uzbekistan',
-        'Vanuatu', 'Vatican', 'Venezuela', 'Vietnam', 'Wallis and Futuna',
-        'Yemen', 'Zambia', 'Zimbabwe'
-    ]
-
     function randomRgbColor() {
         // const r = Math.floor(Math.random() * 256);
         // const g = Math.floor(Math.random() * 256);
         // const b = Math.floor(Math.random() * 256);
         return `steelblue`;
     }
-
     function searchDate(i) {
         time = (i + 1) * 1000 * 60 * 60 * 24 + start_day.getTime();
         time = new Date(time);
@@ -106,54 +22,38 @@ function sortedBar(choose,j) {
         day = String(time.getDate());
         return (year + '-' + month + '-' + day);
     }
+    choice=['total_cases','total_deaths','people_fully_vaccinated_per_hundred'];
 
-    // Start barchart
-    async function requestData() {
+    if (j == 1){
+        barchart.selectAll('rect').remove();
+        barchart.selectAll('text').remove();
+        barchart.selectAll('line').remove();
+        d3.selectAll('g.axis g.tick').remove();
+        barchart.selectAll('g').remove();
+    }
+     barchart = d3.select("svg#barchart");
+     barWidth = barchart.attr("width");
+     barHeight0 = barchart.attr("height");
+     barMargin = {
+        top: 10,
+        right: 10,
+        bottom: 50,
+        left: 50
+    };
+    const chartWidth = barWidth - barMargin.left - barMargin.right;
+    const chartHeight = barHeight0 - barMargin.top - barMargin.bottom;
 
-        // function dateDiffInDays(a, b) {
-        //     // Discard the time and time-zone information.
-        //     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-        //     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-
-        //     return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
-        // }
-
-        // const csv = await d3.csv("vacc_processed.csv");
-        // for (var i = 0; i < csv.length; i++) {
-        //     const cur_date = new Date(csv[i].date);
-        //     // const diffTime = Math.abs(cur_date - start_day);
-        //     var diffDays = dateDiffInDays(start_day, cur_date)
-        //     country = csv[i].location
-
-
-        //     data[diffDays][country] = csv[i]
-        // }
-        // console.log(data[0]['Argentina'])
-
-            const barchart = d3.select("svg#barchart");
-            const width = barchart.attr("width");
-            const height = barchart.attr("height");
-            const margin = {
-                top: 10,
-                right: 10,
-                bottom: 50,
-                left: 50
-            };
-            const chartWidth = width - margin.left - margin.right;
-            const chartHeight = height - margin.top - margin.bottom;
-
-            let annotations = barchart.append("g").attr("id", "annotations");
-            let chartArea = barchart.append("g").attr("id", "points")
-                .attr("transform", `translate(${margin.left},${margin.top})`);
-        console.log(data);
+    let annotations = barchart.append("g").attr("id", "annotations");
+    let chartArea = barchart.append("g").attr("id", "points")
+        .attr("transform", `translate(${barMargin.left},${barMargin.top})`);
 
         const numLoc = location_list.length;
         const count = 10;
-        const duration = 0.0001;
+        const duration = 0.000001;
         const barPadding = 20;
         const barHeight = (chartHeight - (barPadding * count)) / count;
         const getDate = () => dateIndex;
-        let dateIndex = 0;
+        let dateIndex = 601;
         let date = dateIndex;
         let dataSlice = [];
         let chart = null,
@@ -172,35 +72,34 @@ function sortedBar(choose,j) {
             }
         }
 
-        const formatData = () => {
-            lst = [];
-            for (n = 0; n < 702; n++) {
-                for (i = 0; i < numLoc; i++) {
-                    if (data[n][location_list[i]] != null) {
-                        temp = data[n][location_list[i]];
-                        // console.log(temp);
-                        if (temp[choice[choose]] != NaN) {
-                            lst.push({
-                                value: Number(temp[choice[choose]]),
-                                name: temp.location,
-                                lastValue: function () {
-                                    if (data[n - 1][location_list[i]] != NaN) {
-                                        if (data[n - 1][location_list[i]][choice[choose]] != NaN) {
-                                            return Number(data[n - 1][location_list[i]][choice[choose]]);
-                                        }
+    const formatData = () => {
+        lst = [];
+        for (n = 0; n < 702; n++) {
+            for (i = 0; i < numLoc; i++) {
+                if (data[n][location_list[i]] != null) {
+                    temp = data[n][location_list[i]];
+                    // console.log(temp);
+                    if (temp[choice[choose]] != NaN) {
+                        lst.push({
+                            value: Number(temp[choice[choose]]),
+                            name: temp.location,
+                            lastValue: function () {
+                                if (data[n - 1][location_list[i]] != NaN) {
+                                    if (data[n - 1][location_list[i]][choice[choose]] != NaN) {
+                                        return Number(data[n - 1][location_list[i]][choice[choose]]);
                                     }
-                                },
-                                date: n,
-                                color: randomRgbColor()
-                            });
-                        }
+                                }
+                            },
+                            date: n,
+                            color: randomRgbColor()
+                        });
                     }
                 }
             }
-            console.log(lst);
         }
-        // 获取当天数据并按倒叙排列
-
+        console.log('fuck')
+        console.log(lst);
+    }
         const sliceData = () =>
             dataSlice = lst.filter(d => d.date === date).sort((a, b) => b.value - a.value).slice(0, count);
         console.log(dataSlice);
@@ -215,7 +114,7 @@ function sortedBar(choose,j) {
 
             chartArea.append('g')
                 .classed('axis', true)
-                .style('transform', `translate3d(${margin.left}px, ${margin.top+10}px, 0)`)
+                .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top+10}px, 0)`)
                 .call(axis);
         }
         const updateAxis = () => {
@@ -243,8 +142,8 @@ function sortedBar(choose,j) {
             dateTitle = chartArea.append('text')
                 .classed('date-title', true)
                 .text("date")
-                .attr('x', chartWidth - margin.top)
-                .attr('y', chartHeight - margin.left)
+                .attr('x', chartWidth - barMargin.top)
+                .attr('y', chartHeight - barMargin.left)
                 .attr('fill', 'rgb(128, 128, 128)')
                 .attr('font-size', 40)
                 .attr('text-anchor', 'end')
@@ -259,7 +158,7 @@ function sortedBar(choose,j) {
         const createChart = () => {
             chart = chartArea.append('g')
                 .classed('chart', true)
-                .style('transform', `translate3d(${margin.left}px, ${margin.top}px, 0)`);
+                .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top}px, 0)`);
         }
         const renderChart = () => {
             const bars = chart.selectAll('g.bar').data(dataSlice, (d) => d.name);
@@ -324,7 +223,7 @@ function sortedBar(choose,j) {
 
         function createTicker() {
             const ticker = d3.interval(() => {
-                if (dateIndex < 701) {
+                if (dateIndex > 600 && dateIndex < 701) {
                     dateIndex++;
                     date = getDate();
                     dateTitle.text(searchDate(date));
@@ -376,7 +275,7 @@ function sortedBar(choose,j) {
             locator(dateIndex); // 创建定时器
         }
         init();
-        reqdate = document.getElementById("dateSlider");
+        reqdate = document.getElementById("timeSlider");
         reqdate.onchange = function () {
             barchart.selectAll('rect').remove();
             barchart.selectAll('text').remove();
@@ -387,6 +286,3 @@ function sortedBar(choose,j) {
             console.log(val)
         };
     }
-    requestData();
-    
-}
