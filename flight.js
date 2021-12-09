@@ -1,20 +1,21 @@
-function makeFlightData(){
+function makeFlightData() {
     var requestData = async function () {
         const airdata = await d3.json("./airline_percentage.json");
         console.log(airdata);
-
+        console.log("asdfasdfas")
         const flight = d3.select("div#flight");
-        const svg = flight
+        svgF = flight
             .append("svg")
             .attr("width", 1200)
             .attr("height", 580)
-            .style("margin", 20);
-        const width = 1100;
-        const height = 580;
-        margin = 25;
-        const chartWidth = width - margin - margin;
-        const chartHeight = height - margin - margin;
-        var chartArea = svg
+            .style("margin", 20)
+            .style("background", "#0e151f");
+        marginF = 25;
+        widthF = 1100;
+        heightF = 580;
+        chartWidth = widthF - marginF - marginF;
+        chartHeight = heightF - marginF - marginF;
+        var chartArea = svgF
             .append("g")
             .attr("transform", "translate(" + 25 + "," + 25 + ")");
 
@@ -33,42 +34,48 @@ function makeFlightData(){
             updateBlock(val);
             console.log(incomeSlider.value);
         };
-        
+
         function updateBlock(value) {
             createSecondChart(1100);
             createFirstChart(value);
-            createBar(value-sliderW);
+            createBar(value - sliderW);
             createMonth();
             createCountry();
         }
 
         function createBar(sliderWidth) {
+            chartArea.select("rect.slideee").remove();
             chartArea.append("rect")
+                .classed('slideee', true)
                 .attr("width", sliderW)
                 .attr("height", sliderL)
                 .attr("x", sliderWidth)
                 .attr("y", 0)
+                // .attr("fill", "#0e151f")
                 .attr("fill", "white")
                 .attr("opacity", 0.8);
-            svg.selectAll("text").remove();
-            svg.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
-            svg.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+            svgF.selectAll("text").remove();
+            svgF.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+            svgF.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
         }
-        function createCountry(){
+
+        function createCountry() {
             temp = 0;
             airdata.forEach(d => {
-                svg.append("text").attr("x", 0).attr("y", 37+temp*26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
-                temp = temp+1;
+                svgF.append("text").attr("x", 0).attr("y", 37 + temp * 26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+                temp = temp + 1;
             });
         }
-        function createMonth(){
+
+        function createMonth() {
             ini = -35;
-            Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-            for (i = 0; i<12; i++){
-                ini = ini+88;
-                svg.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+            Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            for (i = 0; i < 12; i++) {
+                ini = ini + 88;
+                svgF.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
             }
         }
+
         function createFirstChart(sliderWidth) {
 
             const rectNumX = 35;
@@ -101,7 +108,7 @@ function makeFlightData(){
                 return airScale(airdata[j][i])
             }
             // console.log(airChoose(0,202001))
-            numBlock = ((sliderWidth - margin) / chartWidth) * 36;
+            numBlock = ((sliderWidth - marginF) / chartWidth) * 36;
 
             for (var i = 0; i <= numBlock; i++) {
                 for (var j = 0; j <= rectNumY; j++) {
