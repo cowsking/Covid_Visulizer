@@ -15,60 +15,212 @@
    <script src="./flight.js"></script>
     <script src="./trade.js"></script>
   <style>
+    body{ 
+      background-color: #0e151f;
+    }
+
+    .float-child-left {
+      float: left;
+      padding: 20px;
+    }
+
+    /* .float-child-right {
+      float: right;
+      padding: 40px;
+    } */
+
     .country {
       fill: #374359;
     }
 
     .outline {
-      stroke: #95989f;
-      stroke-width: 1px;
+      stroke: #C9C9C9;
+      stroke-width: 0.8px;
       fill: none;
+    }
+
+    .button {
+      background-color: #374359;
+      color: #A7B3C8;
+      border-radius: 200px;
+      margin: 10px;
+      font-family: 'Helvetica';
+      font-weight: 200;
+      margin-top: 50px;
+    }
+
+    .axisAttr text{
+      fill: #E2ECFF;
+      font-family: 'Helvetica';
+    }
+
+    .axisAttr path{
+      stroke: #E2ECFF;
+    }
+
+    .axisAttr line{
+      stroke: #E2ECFF;
+    }
+ 
+    .slider {
+      -webkit-appearance: none;
+      width: 50%;
+      height: 8px;
+      border-radius: 20px;  
+      background: #A7B3C8;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%; 
+      background: #E2ECFF;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #E2ECFF;
+      cursor: pointer;
+    }
+
+    #title {
+      font-size: 60px;
+      font-family: 'Helvetica';
+      font-weight: 500;
+      margin-top: 50px;
+      margin-left: 50px;
+      color: #E2ECFF;
+    }
+    
+    #discription {
+      font-size: 20px;
+      font-family: 'Helvetica';
+      font-weight: 400;
+      margin-top: 5px;
+      margin-left: 50px;
+      color: #E2ECFF;
+    }
+
+    #moreDis {
+      font-size: 20px;
+      font-family: 'Helvetica';
+      font-weight: 200;
+      margin-top: 10px;
+      margin-left: 50px;
+      color: #E2ECFF;
+    }
+
+    #subTitle {
+      font-size: 35px;
+      font-family: 'Helvetica';
+      font-weight: 500;
+      color: #E2ECFF;
+      margin-top: 150px;
+    }
+
+    #subDis{
+      font-size: 20px;
+      font-family: 'Helvetica';
+      font-weight: 200;
+      color: #E2ECFF;
+      margin-top: -20px;
+    }
+
+    .limit {
+      font-size: 20px;
+      font-family: 'Helvetica';
+      font-weight: 200;
+      color: #E2ECFF;
+      padding-left: 20px;
+    }
+
+    .circleText {
+      font-size: 25px;
+      font-family: 'Helvetica';
+      font-weight: 300;
+      color: #E2ECFF;
     }
   </style>
 </head>
-<div>
-  <div class="container">
-    <h3>Select by type</h3>
-    <a href="#" class="button" id="case" style="font-size: 20px">Case</a>
-    <a href="#" class="button button2" id="death" style="font-size: 20px"
-      >Death</a
-    >
-    <a href="#" class="button button3" id="vaccination" style="font-size: 20px"
-      >vaccination</a
-    >
-    <input type="range" min="0" max="701" value="0" class="slider"
-    id="timeSlider" width: "50px">
-    <g id="dateDisplay">2020-1-1</g>
-  </div>
-  <div id="main" height="700" width="1400"></div>
-  <div class="container">
-    <svg id="barchart" height="500" width="800" style="margin-top:50px"> </svg>
-    <input type="range" min="0" max="701" width="500" value="300" class="" id="dateSlider">
-    <g id="dateDisplay">2020-1-1</g>
-    <br>
-    <!-- <a href="#" class="button" id="vacc" style="font-size: 20px">Vaccined</a>
-    <a href="#" class="button button2" id="case" style="font-size: 20px">Case</a>
-    <a href="#" class="button button3" id="death" style="font-size: 20px">Death</a> -->
+
+<div class="headText" style="background: #0e151f;">
+  <p>
+    <h1 id="title"> Digging Deeper in COVID-19</h1>
+    <h3 id="discription">Data Visualization on COVID-19 data</h3>
+    <text id="moreDis">
+      The COVID-19 pandemic is impacting us from 2019 until now. The visualization 
+    </text>
+    <br><text id="moreDis">
+      tracks the trend of COVID-19 cases, death rate, and vaccination rate among 
+    </text>
+    <br><text id="moreDis">
+      different countries and delves deeper into the impact of COVID-19 through     
+    </text>
+    <br><text id="moreDis">
+      trade and traffic at a global scale.    
+    </text>
+  </p>
+
 </div>
 
-   <div class="container">
-        <svg id="chord" height="850" width="850" style="background: rgb(255, 255, 255); margin-top:50px"></svg>
-        <br>
-        <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
-        <a href="#" class="button button2" id="19in" style="font-size: 20px">2019 Import</a>
-        <a href="#" class="button button3" id="20out" style="font-size: 20px">2020 Export</a>
-        <a href="#" class="button button4" id="19out" style="font-size: 20px">2019 Export</a>
-    </div>
-    <div class="container">
-        <div id="flight" height="600"> </div>
-        <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
-    </div>
+<div class="float-container" style="background: #0e151f;">
+  <div class="container" style="background: #0e151f;">
+    <h3 id="subTitle">How is vaccination impacting the COVID-19?</h3>
+    <h5 id="subDis">Changes in cases, death rate, and vaccination rate in all countries from 2020 to 2021.</h5>
+    <a href="#" class="button" id="case" style="font-size: 20px">Case</a>
+    <a href="#" class="button" id="death" style="font-size: 20px">Death</a>
+    <a href="#" class="button" id="vaccination" style="font-size: 20px">Vaccination</a>
+  </div>
+
+  <div id="main" class="float-child-left" style="background: #0e151f;">
+    <!-- <svg id="map" height="600" width="1164" style= "margin-left:30px" ></svg> -->
+  </div>
+
+  <!-- <div class="float-child-right" style="background: #0e151f;"> -->
+    <!-- <svg id="barchart" height="500" width="800" style= "margin-right:30px"></svg> -->
+  <!-- </div> -->
+
+  <br>
+  <div class="container" style="background: #0e151f">
+    <a class="limit">2020-1-1</a>
+    <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width="10px">
+    <a class="limit">2020-1-1</a>
+  </div>
+
+</div>
+
+  <div class="container" style="background: #0e151f">
+    <h3 id="subTitle">How different was the global trade under the COVID-19?</h3>
+    <h5 id="subDis">Trade import and export in different countries in 2020?</h5>
+    <svg id="chord" height="500" width="500" style="margin-top:50px"></svg>
+    <br> 
+    <a href="#" class="button" id="19in" style="font-size: 20px">2019 Import</a>
+    <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
+    <a href="#" class="button" id="19out" style="font-size: 20px">2019 Export</a>
+    <a href="#" class="button" id="20out" style="font-size: 20px">2020 Export</a>
+  </div>
+
+  <div class="container" style="background: #0e151f">
+    <h3 id="subTitle">How different was the traffic under the COVID-19?</h3>
+    <h5 id="subDis">Changes in cases, death rate, and vaccination rate in all countries from 2020 to 2021.</h5>
+    <div id="flight" height="600"></div>
+    <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
+  </div>
 
 
-   
+
+
   <body>
     <script>
-      const main = d3.select("div#main");
+      const main = d3.select("#main");
 
       //find width and height of window
       const docWidth =
@@ -81,21 +233,25 @@
         document.body.clientHeight;
 
       //create graph dimensions
-      const svg = main
-        .append("svg")
-        .attr("width", docWidth * 0.6)
-        .attr("height", docHeight)
-        .style("background", "#0e151f")
+      const svg = main.append("svg")
+                      .attr("width", docWidth * 0.55)
+                      .attr("height", docHeight * 0.6)
+                      .style("background", "#0e151f")
+                      .style("margin", 0);
+      barchart = main.append("svg")
+      .attr("width", docWidth * 0.4)
+        .attr("height", docHeight * 0.6)
+        .attr("id", 'barchart')
+        // .style("background", "#0e151f")
         .style("margin", 0);
-
+        
       const width = svg.attr("width");
       const height = svg.attr("height");
-      margin = 20;
+      const margin = 20;
       const mapWidth = width - margin - margin;
       const mapHeight = height - margin - margin;
-      const map = svg
-        .append("g")
-        .attr("transform", "translate(" + 20 + "," + 20 + ")");
+      const map = svg.append("g")
+                     .attr("transform", "translate(" + 20 + "," + 20 + ")");
 
       start_day = new Date("2020-01-01");
       days = 702;
@@ -428,32 +584,32 @@
         caseColorScale = d3
           .scaleLog()
           .domain([0.001, 251363.345])
-          .range(["#ACE8D4", "#00726A"]);
+          .range(["#660064", "#F0BBFF"]);
         deathColorScale = d3
           .scaleLinear()
           .domain([0, 6033.739])
-          .range(["#ACE8D4", "#00726A"]);
+          .range(["#A70000", "#FFBABA"]);
         vaccinationColorScale = d3
           .scaleLinear()
           .domain([0, 121.53])
-          .range(["#ACE8D4", "#00726A"]);
+          .range(["#001AFF", "#BDE7FF"]);
 
         var outcomeFunctions = {
           case: function (d) {
             if (!d.total_cases_per_million) {
-              return "grey";
+              return "#374359";
             }
             return caseColorScale(d.total_cases_per_million);
           },
           death: function (d) {
             if (!d.total_deaths_per_million) {
-              return "grey";
+              return "#374359";
             }
             return deathColorScale(d.total_deaths_per_million);
           },
           vaccination: function (d) {
             if (!d.people_vaccinated_per_hundred) {
-              return "grey";
+              return "#374359";
             }
             return vaccinationColorScale(d.people_vaccinated_per_hundred);
           },
@@ -481,7 +637,7 @@
               cur_data = data[time][d.properties.name];
 
               if (cur_data == undefined) {
-                return "grey";
+                return "#374359";
               } else {
                 return outcomeFunctions[outcomeSelect](cur_data);
               }

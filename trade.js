@@ -99,6 +99,7 @@ chords.groups.forEach( d => {
 
 rings.append("text")
      .attr("transform", d => d.trans)
+     .attr("class", "circleText")
      .text(d => nodes[ d.index ].Name )
      .attr("text-anchor", d => d.anchor);
 

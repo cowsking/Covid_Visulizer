@@ -12,7 +12,8 @@ function sortedBar(choose, j) {
         // const r = Math.floor(Math.random() * 256);
         // const g = Math.floor(Math.random() * 256);
         // const b = Math.floor(Math.random() * 256);
-        return `steelblue`;
+        // return `steelblue`;
+        return '#2D9CDB';
     }
     function searchDate(i) {
         time = (i + 1) * 1000 * 60 * 60 * 24 + start_day.getTime();
@@ -36,9 +37,9 @@ function sortedBar(choose, j) {
      barHeight0 = barchart.attr("height");
      barMargin = {
         top: 10,
-        right: 10,
+        right: 70,
         bottom: 50,
-        left: 50
+        left: 70
     };
     const chartWidth = barWidth - barMargin.left - barMargin.right;
     const chartHeight = barHeight0 - barMargin.top - barMargin.bottom;
@@ -114,7 +115,8 @@ function sortedBar(choose, j) {
 
             chartArea.append('g')
                 .classed('axis', true)
-                .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top+10}px, 0)`)
+                .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top+5}px, 0)`)
+                // .attr('class', 'axisAttr')
                 .call(axis);
         }
         const updateAxis = () => {
@@ -124,6 +126,7 @@ function sortedBar(choose, j) {
 
             barchart.select('g.axis')
                 .transition().duration(duration).ease(d3.easeLinear)
+                .attr('class', 'axisAttr')
                 .call(axis);
 
             d3.selectAll('g.axis g.tick text').attr('font-size', 14);
@@ -132,7 +135,8 @@ function sortedBar(choose, j) {
             d3.selectAll('g.axis g.tick').select('line.grid-line').remove();
             d3.selectAll('g.axis g.tick').append('line')
                 .classed('grid-line', true)
-                .attr('stroke', 'black')
+                .attr('stroke', '#E2ECFF')
+                .attr('opacity', 0.3)
                 .attr('x1', 0)
                 .attr('y1', 0)
                 .attr('x2', 0)
@@ -144,8 +148,10 @@ function sortedBar(choose, j) {
                 .text("date")
                 .attr('x', chartWidth - barMargin.top)
                 .attr('y', chartHeight - barMargin.left)
-                .attr('fill', 'rgb(128, 128, 128)')
-                .attr('font-size', 40)
+                // .attr('fill', 'rgb(128, 128, 128)')
+                .attr('fill', "#E2ECFF")
+                .attr('font-family', 'Helvetica')
+                .attr('font-size', 20)
                 .attr('text-anchor', 'end')
         }
         const calTranslateY = (i, end) => {
@@ -182,9 +188,11 @@ function sortedBar(choose, j) {
             barsEnter.append('text')
                 .classed('label', true)
                 .text(d => d.name)
-                .attr('x', '-5')
+                .attr('class', "textLabel")
+                .attr('x', '-10')
                 .attr('y', barPadding)
                 .attr('font-size', 14)
+                .style('fill', '#E2ECFF')
                 .style('text-anchor', 'end');
 
             // barsEnter.append('text')
