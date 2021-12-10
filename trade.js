@@ -45,8 +45,8 @@ links.forEach( d => {
 });
 console.log(matrix);
 console.log(connections);
-
-let radius = (width / 2.0) - 125;
+chord_width = document.getElementById("chord").getAttribute('width');
+let radius = (chord_width / 2.0) - 125;
 let chordGen = d3.chord()
                 .padAngle(.04)
                 .sortSubgroups(d3.descending)
@@ -58,7 +58,7 @@ let ribbonGen = d3.ribbon()
                   .radius(radius)
 let chords = chordGen(matrix);
 console.log(chords);
-chordChart.attr("transform",`translate(${width/2.0},${height/2.0})`);
+chordChart.attr("transform",`translate(${chord_width/2.0},${height/2.0})`);
 // Make the outer ring
 let colorScale = d3.scaleOrdinal().range(colorPalette);
 // We'll use a data join to make a G tag and then make paths within it using the data for the ring
