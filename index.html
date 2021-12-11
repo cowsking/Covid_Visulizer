@@ -92,38 +92,58 @@
     }
 
     #title {
-      font-size: 60px;
+      font-size: 90px;
       font-family: 'Helvetica';
-      font-weight: 500;
-      margin-top: 50px;
-      margin-left: 50px;
+      font-weight: 800;
+      margin-top: 150px;
+      margin-left: 350px;
+      color: #E2ECFF;
+    }
+
+    #title2 {
+      font-size: 90px;
+      font-family: 'Helvetica';
+      font-weight: 800;
+      margin-top: -30px;
+      margin-left: 350px;
       color: #E2ECFF;
     }
     
     #discription {
-      font-size: 20px;
+      font-size: 30px;
       font-family: 'Helvetica';
       font-weight: 400;
-      margin-top: 5px;
-      margin-left: 50px;
+      margin-top: -250px;
+      margin-left: 1200px;
       color: #E2ECFF;
+      text-align: left;
     }
 
     #moreDis {
-      font-size: 20px;
+      font-size: 22px;
       font-family: 'Helvetica';
       font-weight: 200;
       margin-top: 10px;
-      margin-left: 50px;
+      margin-bottom: 20px;
+      margin-left: 1200px;
       color: #E2ECFF;
+      text-align: left;
     }
 
     #subTitle {
-      font-size: 35px;
+      font-size: 50px;
       font-family: 'Helvetica';
       font-weight: 500;
       color: #E2ECFF;
-      margin-top: 150px;
+      margin-top: 180px;
+    }
+
+    #subTitle1 {
+      font-size: 50px;
+      font-family: 'Helvetica';
+      font-weight: 500;
+      color: #E2ECFF;
+      margin-top: 250px;
     }
 
     #subDis{
@@ -143,29 +163,30 @@
     }
 
     .circleText {
-      font-size: 25px;
+      font-size: 15px;
       font-family: 'Helvetica';
-      font-weight: 300;
-      color: #E2ECFF;
+      font-weight: 400;
+      fill: #E2ECFF;
     }
   </style>
 </head>
 
 <div class="headText" style="background: #0e151f;">
   <p>
-    <h1 id="title"> Digging Deeper in COVID-19</h1>
+    <h1 id="title"> Digging Deeper</h1>
+    <h1 id="title2"> in COVID-19</h1>
     <h3 id="discription">Data Visualization on COVID-19 data</h3>
     <text id="moreDis">
-      The COVID-19 pandemic is impacting us from 2019 until now. The visualization 
+      The COVID-19 pandemic is impacting us from 2019 until now. The 
     </text>
     <br><text id="moreDis">
-      tracks the trend of COVID-19 cases, death rate, and vaccination rate among 
+      visualization tracks the trend of COVID-19 cases, death rate, and
     </text>
     <br><text id="moreDis">
-      different countries and delves deeper into the impact of COVID-19 through     
+      vaccination rate among different countries and delves deeper into
     </text>
     <br><text id="moreDis">
-      trade and traffic at a global scale.    
+      the impact of COVID-19 through trade and traffic at a global scale.    
     </text>
   </p>
 
@@ -190,7 +211,7 @@
 
   <br>
   <div class="container" style="background: #0e151f">
-    <a class="limit">2020-1-1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160;</a>
+    <a class="limit">2020-1-1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</a>
     <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width="10px">
     <a class="limit">2020-1-1</a>
   </div>
@@ -198,19 +219,21 @@
 </div>
 
   <div class="container" style="background: #0e151f">
-    <h3 id="subTitle">How different was the global trade under the COVID-19?</h3>
+    <h3 id="subTitle1">How different was the global trade under the COVID-19?</h3>
     <h5 id="subDis">Trade import and export in different countries in 2020?</h5>
-    <svg id="chord" height="500" width="500" style="margin-top:50px"></svg>
-    <br> 
+    
     <a href="#" class="button" id="19in" style="font-size: 20px">2019 Import</a>
     <a href="#" class="button" id="20in" style="font-size: 20px">2020 Import</a>
     <a href="#" class="button" id="19out" style="font-size: 20px">2019 Export</a>
     <a href="#" class="button" id="20out" style="font-size: 20px">2020 Export</a>
+    <br> 
+    <svg id="chord" height="750" width="800" style="margin-top:50px"></svg>
+   
   </div>
 
   <div class="container" style="background: #0e151f">
     <h3 id="subTitle">How different was the traffic under the COVID-19?</h3>
-    <h5 id="subDis">Changes in cases, death rate, and vaccination rate in all countries from 2020 to 2021.</h5>
+    <h5 id="subDis">Compare the weekly average XXXX in 2019 and 2020.</h5>
     <div id="flight" height="600"></div>
     <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
   </div>

@@ -55,14 +55,14 @@ function makeFlightData() {
                 .attr("fill", "white")
                 .attr("opacity", 0.8);
             svgF.selectAll("text").remove();
-            svgF.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
-            svgF.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+            svgF.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            svgF.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
         }
 
         function createCountry() {
             temp = 0;
             airdata.forEach(d => {
-                svgF.append("text").attr("x", 0).attr("y", 37 + temp * 26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+                svgF.append("text").attr("x", 0).attr("y", 37 + temp * 26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
                 temp = temp + 1;
             });
         }
@@ -72,7 +72,7 @@ function makeFlightData() {
             Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             for (i = 0; i < 12; i++) {
                 ini = ini + 88;
-                svgF.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "grey").attr("opacity", 1);
+                svgF.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             }
         }
 
