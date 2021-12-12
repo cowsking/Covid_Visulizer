@@ -1,14 +1,6 @@
-function sortedBar(choose,j) {
+function sortedBarini(choose, j) {
 
     choice=['total_cases','total_deaths','people_fully_vaccinated_per_hundred'];
-    // console.log(choice[0]);
-    // let dateData = [];
-    // start_day = new Date('2020-01-01')
-    // days = 702
-    // var data = {}
-    // for (var i = 0; i < days; i++) {
-    //     data[i] = {}
-    // }
 
     if (j == 1){
         // barchart.selectAll('rect').remove();
@@ -18,7 +10,17 @@ function sortedBar(choose,j) {
         barchart = d3.select("svg#barchart");
         barchart.selectAll('g').remove();
     }
-
+    function randomRgbColor() {
+        if (choose == 0){
+            return '#FF5252';
+        }
+        if (choose == 1){
+            return '#BB29EB';
+        }
+        if (choose == 2){
+            return '#0D61FA';
+        }
+    }
     // function dateDiffInDays(a, b) {
     //     // Discard the time and time-zone information.
     //     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -91,12 +93,6 @@ function sortedBar(choose,j) {
         'Yemen', 'Zambia', 'Zimbabwe'
     ]
 
-    function randomRgbColor() {
-        // const r = Math.floor(Math.random() * 256);
-        // const g = Math.floor(Math.random() * 256);
-        // const b = Math.floor(Math.random() * 256);
-        return `steelblue`;
-    }
 
     function searchDate(i) {
         time = (i + 1) * 1000 * 60 * 60 * 24 + start_day.getTime();
@@ -129,18 +125,30 @@ function sortedBar(choose,j) {
         //     data[diffDays][country] = csv[i]
         // }
         // console.log(data[0]['Argentina'])
+         svg = main.append("svg")
+        .attr("width", docWidth * 0.55)
+        .attr("height", docHeight * 0.6)
+        .style("background", "#0e151f")
+        .style("margin", 0);
+barchart = main.append("svg")
+.attr("width", docWidth * 0.4)
+.attr("height", docHeight * 0.6)
+.attr("id", 'barchart')
+// .style("background", "#0e151f")
+.style("margin", 0);
 
-            const barchart = d3.select("svg#barchart");
-            const width = barchart.attr("width");
-            const height = barchart.attr("height");
-            const margin = {
+
+             barchart = d3.select("svg#barchart");
+             width = barchart.attr("width");
+             height = barchart.attr("height");
+             margin = {
                 top: 10,
                 right: 10,
                 bottom: 50,
                 left: 50
             };
-            const chartWidth = width - margin.left - margin.right;
-            const chartHeight = height - margin.top - margin.bottom;
+             chartWidth = width - margin.left - margin.right;
+             chartHeight = height - margin.top - margin.bottom;
 
             let annotations = barchart.append("g").attr("id", "annotations");
             let chartArea = barchart.append("g").attr("id", "points")

@@ -1,5 +1,7 @@
 function tradeChart(i,j){
 
+  // This code refers to the code of the INFO5100 d3 chord diagrams course
+
     dataset = ["./2019IN.json","./2020IN.json","./2020ex.json","./2019ex.json"];
 console.log(dataset[1]);
 
@@ -14,15 +16,12 @@ if (j == 1){
 
 const drawChord = async () => {
 const colorPalette = ["#48bf8e", "#075c62", "#a1def0", "#5e2a96", 
-                      "#e775cc", "#f3c5fa", "#9a76af", "#1c4585", 
-                      "#479abc", "#94ea5b", "#1d6d1f", "#cddb9b", 
-                      "#604020", "#d48f4d", "#f24219", "#8e1023", 
-                      "#8c956d", "#2cf52b", "#ff0087", "#e9d737"]
-const got = await d3.json(dataset[i]);
-console.log(got);
+                      "#e775cc", "#f3c5fa", "#9a76af", "#1c4585"]
+const getData = await d3.json(dataset[i]);
+console.log(getData);
 
-let nodes = got.nodes;
-let links = got.edges;
+let nodes = getData.nodes;
+let links = getData.edges;
 let matrix = []; // dense edge matrix
 let connections = {};  // To save some time later, we'll also store lists of connections between nodes
 for (let i=0; i<nodes.length; i++) { 

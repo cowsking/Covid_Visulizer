@@ -11,6 +11,7 @@
    <!-- End trade -->     
 
    <!-- <script src="d3.js"></script> -->
+   <script src="./sortedBar.js"></script>
    <script src="./sortedBar2.js"></script>
    <script src="./flight.js"></script>
     <script src="./trade.js"></script>
@@ -66,6 +67,30 @@
       -webkit-appearance: none;
       width: 50%;
       height: 8px;
+      margin-left: -100px;
+      border-radius: 20px;  
+      background: #A7B3C8;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    /* .slider .slider-box {
+        background-color: red;
+        display: inline-block;
+        height: 8px;
+    } */
+    /* .slider .slider-box .slider-value {
+        background-color: blue;
+    } */
+    /* .slider input {
+        position: absolute;
+    } */
+    .slider1 {
+      -webkit-appearance: none;
+      width: 1055px;
+      height: 8px;
+      margin-left: -100px;
       border-radius: 20px;  
       background: #A7B3C8;
       outline: none;
@@ -171,7 +196,7 @@
   </style>
 </head>
 
-<div class="headText" style="background: #0e151f;">
+<div style="background: #0e151f;">
   <p>
     <h1 id="title"> Digging Deeper</h1>
     <h1 id="title2"> in COVID-19</h1>
@@ -212,7 +237,9 @@
   <br>
   <div class="container" style="background: #0e151f">
     <a class="limit">2020-1-1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</a>
-    <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width="10px">
+
+        <input type="range" min="0" max="701" value="0" id="timeSlider" class="slider" >
+
     <a class="limit">2020-1-1</a>
   </div>
 
@@ -235,7 +262,7 @@
     <h3 id="subTitle">How different was the traffic under the COVID-19?</h3>
     <h5 id="subDis">Compare the weekly average XXXX in 2019 and 2020.</h5>
     <div id="flight" height="600"></div>
-    <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
+    <input type="range" min="0" max="1050" width="1100" value="300" class="slider1" id="incomeSlider">
   </div>
 
 
@@ -364,245 +391,57 @@
           updateMap();
           sortedBar(2,1);
         };
-        location_list = [
-          "Afghanistan",
-          "Africa",
-          "Albania",
-          "Algeria",
-          "Andorra",
-          "Angola",
-          "Anguilla",
-          "Antigua and Barbuda",
-          "Argentina",
-          "Armenia",
-          "Aruba",
-          "Asia",
-          "Australia",
-          "Austria",
-          "Azerbaijan",
-          "Bahamas",
-          "Bahrain",
-          "Bangladesh",
-          "Barbados",
-          "Belarus",
-          "Belgium",
-          "Belize",
-          "Benin",
-          "Bermuda",
-          "Bhutan",
-          "Bolivia",
-          "Bonaire Sint Eustatius and Saba",
-          "Bosnia and Herzegovina",
-          "Botswana",
-          "Brazil",
-          "British Virgin Islands",
-          "Brunei",
-          "Bulgaria",
-          "Burkina Faso",
-          "Burundi",
-          "Cambodia",
-          "Cameroon",
-          "Canada",
-          "Cape Verde",
-          "Cayman Islands",
-          "Central African Republic",
-          "Chad",
-          "Chile",
-          "China",
-          "Colombia",
-          "Comoros",
-          "Congo",
-          "Cook Islands",
-          "Costa Rica",
-          "Cote d'Ivoire",
-          "Croatia",
-          "Cuba",
-          "Curacao",
-          "Cyprus",
-          "Czechia",
-          "Democratic Republic of Congo",
-          "Denmark",
-          "Djibouti",
-          "Dominica",
-          "Dominican Republic",
-          "Ecuador",
-          "Egypt",
-          "El Salvador",
-          "Equatorial Guinea",
-          "Eritrea",
-          "Estonia",
-          "Eswatini",
-          "Ethiopia",
-          "Europe",
-          "European Union",
-          "Faeroe Islands",
-          "Falkland Islands",
-          "Fiji",
-          "Finland",
-          "France",
-          "French Polynesia",
-          "Gabon",
-          "Gambia",
-          "Georgia",
-          "Germany",
-          "Ghana",
-          "Gibraltar",
-          "Greece",
-          "Greenland",
-          "Grenada",
-          "Guatemala",
-          "Guernsey",
-          "Guinea",
-          "Guinea-Bissau",
-          "Guyana",
-          "Haiti",
-          "High income",
-          "Honduras",
-          "Hong Kong",
-          "Hungary",
-          "Iceland",
-          "India",
-          "Indonesia",
-          "International",
-          "Iran",
-          "Iraq",
-          "Ireland",
-          "Isle of Man",
-          "Israel",
-          "Italy",
-          "Jamaica",
-          "Japan",
-          "Jersey",
-          "Jordan",
-          "Kazakhstan",
-          "Kenya",
-          "Kiribati",
-          "Kosovo",
-          "Kuwait",
-          "Kyrgyzstan",
-          "Laos",
-          "Latvia",
-          "Lebanon",
-          "Lesotho",
-          "Liberia",
-          "Libya",
-          "Liechtenstein",
-          "Lithuania",
-          "Low income",
-          "Lower middle income",
-          "Luxembourg",
-          "Macao",
-          "Madagascar",
-          "Malawi",
-          "Malaysia",
-          "Maldives",
-          "Mali",
-          "Malta",
-          "Marshall Islands",
-          "Mauritania",
-          "Mauritius",
-          "Mexico",
-          "Micronesia (country)",
-          "Moldova",
-          "Monaco",
-          "Mongolia",
-          "Montenegro",
-          "Montserrat",
-          "Morocco",
-          "Mozambique",
-          "Myanmar",
-          "Namibia",
-          "Nauru",
-          "Nepal",
-          "Netherlands",
-          "New Caledonia",
-          "New Zealand",
-          "Nicaragua",
-          "Niger",
-          "Nigeria",
-          "Niue",
-          "North America",
-          "North Macedonia",
-          "Northern Cyprus",
-          "Norway",
-          "Oceania",
-          "Oman",
-          "Pakistan",
-          "Palau",
-          "Palestine",
-          "Panama",
-          "Papua New Guinea",
-          "Paraguay",
-          "Peru",
-          "Philippines",
-          "Pitcairn",
-          "Poland",
-          "Portugal",
-          "Qatar",
-          "Romania",
-          "Russia",
-          "Rwanda",
-          "Saint Helena",
-          "Saint Kitts and Nevis",
-          "Saint Lucia",
-          "Saint Vincent and the Grenadines",
-          "Samoa",
-          "San Marino",
-          "Sao Tome and Principe",
-          "Saudi Arabia",
-          "Senegal",
-          "Serbia",
-          "Seychelles",
-          "Sierra Leone",
-          "Singapore",
-          "Sint Maarten (Dutch part)",
-          "Slovakia",
-          "Slovenia",
-          "Solomon Islands",
-          "Somalia",
-          "South Africa",
-          "South America",
-          "South Korea",
-          "South Sudan",
-          "Spain",
-          "Sri Lanka",
-          "Sudan",
-          "Suriname",
-          "Sweden",
-          "Switzerland",
-          "Syria",
-          "Taiwan",
-          "Tajikistan",
-          "Tanzania",
-          "Thailand",
-          "Timor",
-          "Togo",
-          "Tokelau",
-          "Tonga",
-          "Trinidad and Tobago",
-          "Tunisia",
-          "Turkey",
-          "Turkmenistan",
-          "Turks and Caicos Islands",
-          "Tuvalu",
-          "Uganda",
-          "Ukraine",
-          "United Arab Emirates",
-          "United Kingdom",
-          "United States",
-          "Upper middle income",
-          "Uruguay",
-          "Uzbekistan",
-          "Vanuatu",
-          "Vatican",
-          "Venezuela",
-          "Vietnam",
-          "Wallis and Futuna",
-          "World",
-          "Yemen",
-          "Zambia",
-          "Zimbabwe",
-        ];
+        location_list = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
+        'Anguilla', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba',
+        'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain',
+        'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin',
+        'Bermuda', 'Bhutan', 'Bolivia', 'Bonaire Sint Eustatius and Saba',
+        'Bosnia and Herzegovina', 'Botswana', 'Brazil',
+        'British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina Faso',
+        'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde',
+        'Cayman Islands', 'Central African Republic', 'Chad', 'Chile',
+        'China', 'Colombia', 'Comoros', 'Congo', 'Cook Islands',
+        'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cuba', 'Curacao',
+        'Cyprus', 'Czechia', 'Democratic Republic of Congo', 'Denmark',
+        'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt',
+        'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia',
+        'Eswatini', 'Ethiopia',
+        'Faeroe Islands', 'Falkland Islands', 'Fiji', 'Finland', 'France',
+        'French Polynesia', 'Gabon', 'Gambia', 'Georgia', 'Germany',
+        'Ghana', 'Greece', 'Greenland', 'Grenada',
+        'Guatemala', 'Guernsey', 'Guinea', 'Guinea-Bissau', 'Guyana',
+        'Haiti', 'Honduras', 'Hong Kong', 'Hungary',
+        'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq',
+        'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Jamaica', 'Japan',
+        'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kosovo',
+        'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
+        'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Low income',
+        'Luxembourg', 'Macao', 'Madagascar',
+        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta',
+        'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico',
+        'Micronesia (country)', 'Moldova', 'Monaco', 'Mongolia',
+        'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Myanmar',
+        'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Caledonia',
+        'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue',
+        'North Macedonia', 'Northern Cyprus', 'Norway',
+        'Oman', 'Pakistan', 'Palau', 'Palestine', 'Panama',
+        'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Pitcairn',
+        'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda',
+        'Saint Helena', 'Saint Kitts and Nevis', 'Saint Lucia',
+        'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
+        'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia',
+        'Seychelles', 'Sierra Leone', 'Singapore',
+        'Sint Maarten (Dutch part)', 'Slovakia', 'Slovenia',
+        'Solomon Islands', 'Somalia', 'South Africa',
+        'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan',
+        'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan',
+        'Tajikistan', 'Tanzania', 'Thailand', 'Timor', 'Togo', 'Tokelau',
+        'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey',
+        'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu', 'Uganda',
+        'Ukraine', 'United Arab Emirates', 'United Kingdom',
+        'United States', 'Uruguay', 'Uzbekistan',
+        'Vanuatu', 'Vatican', 'Venezuela', 'Vietnam', 'Wallis and Futuna',
+        'Yemen', 'Zambia', 'Zimbabwe']
 
         caseColorScale = d3
           .scaleLog()
@@ -781,8 +620,8 @@
 
           momesh.attr("d", "");
         }
-      };
 
+      };
       requestData();
 
     //   var width = d3.select("#chord").attr("width");

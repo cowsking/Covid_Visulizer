@@ -41,6 +41,7 @@ function makeFlightData() {
             createBar(value - sliderW);
             createMonth();
             createCountry();
+            createlabel();
         }
 
         function createBar(sliderWidth) {
@@ -73,6 +74,15 @@ function makeFlightData() {
             for (i = 0; i < 12; i++) {
                 ini = ini + 88;
                 svgF.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            }
+        }
+
+        function createlabel() {
+            const labelList = ['0~20%','20%~40%','40%~60%','60%`80%','80%~100%'];
+            svgF.append("text").attr("x", 1090).attr("y", 50).text("Flight Density").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            for(i=0; i<5; i++){
+                svgF.append("rect").attr("width", 10).attr("height", 10).attr("x", 1090).attr("y", 70+i*15).style("fill", airColor[i]).attr("opacity", 1);
+                svgF.append("text").attr("x", 1110).attr("y", 80+i*15).text(labelList[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             }
         }
 
