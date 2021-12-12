@@ -351,6 +351,33 @@
           .fitSize([mapWidth, mapHeight], zips);
         var path = d3.geoPath().projection(projection);
         let outcomeSelect = "case";
+        refresh = function () {
+          buttons = document.getElementsByClassName('button');
+          buttons[0].style.color = '#A7B3C8'
+          buttons[1].style.color = '#A7B3C8'
+          buttons[2].style.color = '#A7B3C8'
+          buttons[3].style.color = '#A7B3C8'
+          buttons[4].style.color = '#A7B3C8'
+          buttons[5].style.color = '#A7B3C8'
+          buttons[6].style.color = '#A7B3C8'
+          buttons[0].style['background-color'] = '#374359'
+          buttons[1].style['background-color'] = '#374359'
+          buttons[2].style['background-color'] = '#374359'
+          buttons[3].style['background-color'] = '#374359'
+          buttons[4].style['background-color'] = '#374359'
+          buttons[5].style['background-color'] = '#374359'
+          buttons[6].style['background-color'] = '#374359'
+
+       
+        }
+          // console.log(buttons[0].style.color = 'yellow')
+      //     background-color: #374359;
+      // color: #A7B3C8;
+         
+    //       <span href="#" class="button" id="case" style="font-size: 20px">Case</span>
+    // <span href="#" class="button" id="death" style="font-size: 20px">Death</span>
+    // <span href="#" class="button" id="vaccination" style="font-size: 20px">Vaccination</span>
+        // }
         map
           .selectAll("path.country")
           .data(zips.features)
@@ -365,28 +392,37 @@
           .attr("class", "outline")
           .attr("d", path);
 
-        let btnGen = document.getElementById("case");
-        btnGen.onclick = function () {
+        let btnCase = document.getElementById("case");
+        btnCase.onclick = function () {
           outcomeSelect = "case";
-          console.log("case");
-
+          // console.log("case");
+          refresh()
+          btnCase.style.color = '#1A2841'
+          btnCase.style['background-color'] = '#E2ECFF'
           updateMap();
           sortedBar(1,1);
         };
 
-        let btnPar = document.getElementById("death");
-        btnPar.onclick = function () {
+        let btnDeath = document.getElementById("death");
+        btnDeath.onclick = function () {
           outcomeSelect = "death";
-          console.log("death");
-          
+          // console.log("death");
+          refresh()
+          btnDeath.style.color = '#1A2841'
+          btnDeath.style['background-color'] = '#E2ECFF'
+
           updateMap();
           sortedBar(0,1);
         };
 
-        let btnRac = document.getElementById("vaccination");
-        btnRac.onclick = function () {
+        let btnVac = document.getElementById("vaccination");
+        btnVac.onclick = function () {
           outcomeSelect = "vaccination";
           console.log("vaccination");
+          refresh()
+          btnVac.style.color = '#1A2841'
+          btnVac.style['background-color'] = '#E2ECFF'
+     
 
           updateMap();
           sortedBar(2,1);
@@ -630,18 +666,32 @@
     tradeChart(0, 0);
     let btn2019In = document.getElementById("19in");
     btn2019In.onclick = function () {
+      refresh()
+      btn2019In.style.color = '#1A2841'
+      btn2019In.style['background-color'] = '#E2ECFF'
+     
         tradeChart(0, 1);
     };
     let btn2020In = document.getElementById("20in");
     btn2020In.onclick = function () {
+      refresh()
+      btn2020In.style.color = '#1A2841'
+      btn2020In.style['background-color'] = '#E2ECFF'
         tradeChart(1, 1);
     };
     let btn2020Ex = document.getElementById("20out");
     btn2020Ex.onclick = function () {
+      refresh()
+      btn2020Ex.style.color = '#1A2841'
+      btn2020Ex.style['background-color'] = '#E2ECFF'
         tradeChart(2, 1);
     };
     let btn2019Ex = document.getElementById("19out");
     btn2019Ex.onclick = function () {
+      refresh()
+      btn2019Ex.style.color = '#1A2841'
+      btn2019Ex.style['background-color'] = '#E2ECFF'
+        tradeChart(2, 1);
         tradeChart(3, 1);
     };
 
