@@ -15,54 +15,50 @@ if (j == 1){
 
 
 const drawChord = async () => {
-const colorPalette = ["#48bf8e", "#075c62", "#a1def0", "#5e2a96", 
-                      "#e775cc", "#f3c5fa", "#9a76af", "#1c4585"]
+const colorList = ["#48bf8e", "#075c62", "#a1def0", "#5e2a96"]
 const getData = await d3.json(dataset[i]);
 console.log(getData);
 
 let nodes = getData.nodes;
 let links = getData.edges;
-let matrix = []; // dense edge matrix
-let connections = {};  // To save some time later, we'll also store lists of connections between nodes
+let table = [];
+let relations = {};
 for (let i=0; i<nodes.length; i++) { 
     let row = [];
     for (let j=0; j<nodes.length; j++) { row.push(0); }
     
-    matrix.push(row);
-    connections[i] = [i]; // everything connected to itself!
+    table.push(row);
+    relations[i] = [i];
 }
-console.log(matrix);
+console.log(table);
 links.forEach( d => {
-  // Add in if statement to avoid linking unlinked items
   if (d.weight > 0) {
-    matrix[d.sourceIndex][d.targetIndex] = d.weight;
-    matrix[d.targetIndex][d.sourceIndex] = d.weight;
+    table[d.sourceIndex][d.targetIndex] = d.weight;
+    table[d.targetIndex][d.sourceIndex] = d.weight;
     
-    connections[d.sourceIndex].push(d.targetIndex);
-    connections[d.targetIndex].push(d.sourceIndex);
+    relations[d.sourceIndex].push(d.targetIndex);
+    relations[d.targetIndex].push(d.sourceIndex);
   }
 });
-console.log(matrix);
-console.log(connections);
+console.log(table);
+console.log(relations);
 chord_width = document.getElementById("chord").getAttribute('width');
 chord_height = document.getElementById("chord").getAttribute('height');
 
 let radius = (chord_width / 2.0) - 125;
-let chordGen = d3.chord()
+let generation = d3.chord()
                 .padAngle(.04)
                 .sortSubgroups(d3.descending)
                 .sortChords(d3.descending)
-let arcGen = d3.arc()
+let arc = d3.arc()
                 .innerRadius(radius)
                 .outerRadius(radius + 20)
 let ribbonGen = d3.ribbon()
                   .radius(radius)
-let chords = chordGen(matrix);
+let chords = generation(table);
 console.log(chords);
 chordChart.attr("transform",`translate(${chord_width/2.0},${chord_height/2.0+20})`);
-// Make the outer ring
-let colorScale = d3.scaleOrdinal().range(colorPalette);
-// We'll use a data join to make a G tag and then make paths within it using the data for the ring
+let colorScale = d3.scaleOrdinal().range(colorList);
 let ringContainer = chordChart.append("g");
 let rings = ringContainer.selectAll("g.segment")
                         .data(chords.groups)
@@ -71,9 +67,9 @@ let rings = ringContainer.selectAll("g.segment")
 rings.append("path")
      .attr("fill", d => colorScale( nodes[ d.index ].Affiliation ))
      .attr("stroke", d => colorScale( nodes[ d.index ].Affiliation ))
-     .attr("d", arcGen);
-let ribbonContainer = chordChart.append("g");
-let ribbons = ribbonContainer.selectAll("path.ribbon")
+     .attr("d", arc);
+let ribContainer = chordChart.append("g");
+let ribbons = ribContainer.selectAll("path.ribbon")
                   .data(chords)
                   .join("path")
                   .attr("class","ribbon")
@@ -82,17 +78,14 @@ let ribbons = ribbonContainer.selectAll("path.ribbon")
                   .attr("fill", d => colorScale( nodes[ d.source.index ].Affiliation ))
                   .attr("d", ribbonGen);
 
-
 chords.groups.forEach( d => {
   let transform = '';
-  // find midpoint, convert to degrees
   let midpoint = (d.startAngle + d.endAngle) / 2;
   let rotation = ( midpoint ) * ( 180 / Math.PI ) - 90;
   transform = transform + ` rotate(${rotation})`;
   transform = transform + ` translate(${radius+25}, 0)`;
   if (rotation > 90) {
     transform = transform + ' rotate(180)';
-    // Notice text anchor issue that also first
     d.anchor = "end";
   }
   d.trans = transform;
@@ -104,52 +97,52 @@ rings.append("text")
      .text(d => nodes[ d.index ].Name )
      .attr("text-anchor", d => d.anchor);
 
-function restoreHighlights() {
-  rings.attr("opacity", 1);   // both text and ring
+function reshighLight() {
+  rings.attr("opacity", 1);
   ribbons.attr("opacity", 1);
 }
-function lowlightAll() {
-  rings.attr("opacity", 0.2); // both text and ring
+function allLowlight() {
+  rings.attr("opacity", 0.2);
   ribbons.attr("opacity", 0.2);
 }
 
-function highlightRings(index) {
+function ringHighlight(index) {
   let targetSegments = rings.filter( d => {
-    return connections[d.index].includes(index);    // JS: arr.includes(x) === Python: x in arr 
+    return relations[d.index].includes(index);
   });
   targetSegments.attr("opacity",1);
 }
 
-function highlightRibbons(index) {
+function ribbonHighlight(index) {
   let targetRibbons = ribbons.filter( d => {
     return d.source.index === index || d.target.index === index;
   });
   targetRibbons.attr("opacity",1);
 }
 
-rings.on("mouseout", restoreHighlights)
+rings.on("mouseout", reshighLight)
      .on("mouseover", function(event, d) {
-          lowlightAll();
-          highlightRings(d.index);
-          highlightRibbons(d.index);
+          allLowlight();
+          ringHighlight(d.index);
+          ribbonHighlight(d.index);
         });
 
 let getGradID = chord => `linkGrad-${chord.source.index}-${chord.target.index}`;
 
-var grads = d3.select("#chord").append("defs")
+var finals = d3.select("#chord").append("defs")
   .selectAll("linearGradient")
   .data(chords)
   .join("linearGradient")
   .attr("id", getGradID)
-  .attr("gradientUnits", "userSpaceOnUse")  // use the coordinate system of whatever is being filled
+  .attr("gradientUnits", "userSpaceOnUse")
   .attr("x1", d => radius * Math.cos((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2) )
   .attr("y1", d => radius * Math.sin((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2) )
   .attr("x2", d => radius * Math.cos((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2) )
   .attr("y2", d => radius * Math.sin((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2) )
-grads.append("stop")
+finals.append("stop")
   .attr("offset", "0%")
   .attr("stop-color", d => colorScale(nodes[ d.source.index ].Affiliation) )
-grads.append("stop")
+finals.append("stop")
   .attr("offset", "100%")
   .attr("stop-color", d => colorScale(nodes[ d.target.index ].Affiliation) )
 

@@ -1,9 +1,6 @@
 function sortedBar(choose, j, timee) {
     if (j == 1) {
-        // barchart.selectAll('rect').remove();
         barchart.selectAll('text').remove();
-        // barchart.selectAll('line').remove();
-        // d3.selectAll('g.axis g.tick').remove();
         barchart = d3.select("svg#barchart");
         barchart.selectAll('g').remove();
     }
@@ -38,6 +35,7 @@ function sortedBar(choose, j, timee) {
     //     d3.selectAll('g.axis g.tick').remove();
     //     barchart.selectAll('g').remove();
     // }
+
     barchart = d3.select("svg#barchart");
     barWidth = barchart.attr("width");
     barHeight0 = barchart.attr("height");
@@ -99,7 +97,6 @@ function sortedBar(choose, j, timee) {
             for (i = 0; i < numLoc; i++) {
                 if (data[n][location_list[i]] != null) {
                     temp = data[n][location_list[i]];
-                    // console.log(temp);
                     if (temp[choice[choose]] != NaN) {
                         lst.push({
                             value: Number(temp[choice[choose]]),
@@ -128,7 +125,7 @@ function sortedBar(choose, j, timee) {
     const createScale = () =>
         scale = d3.scaleLinear().domain([0, d3.max(lst, d => d.value)]).range([0, chartWidth]);
 
-    const renderAxis = () => {
+    const drawAxis = () => {
         createScale();
 
         axis = d3.axisTop().scale(scale).ticks(5).tickPadding(10).tickSize(0);
@@ -136,7 +133,6 @@ function sortedBar(choose, j, timee) {
         chartArea.append('g')
             .classed('axis', true)
             .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top+5}px, 0)`)
-            // .attr('class', 'axisAttr')
             .call(axis);
     }
     const updateAxis = () => {
@@ -151,7 +147,7 @@ function sortedBar(choose, j, timee) {
 
         d3.selectAll('g.axis g.tick text').attr('font-size', 14);
     }
-    const renderAxisLine = () => {
+    const drawAxisLine = () => {
         d3.selectAll('g.axis g.tick').select('line.grid-line').remove();
         d3.selectAll('g.axis g.tick').append('line')
             .classed('grid-line', true)
@@ -162,13 +158,12 @@ function sortedBar(choose, j, timee) {
             .attr('x2', 0)
             .attr('y2', chartHeight);
     }
-    const renderDateTitle = () => {
+    const drawDate = () => {
         dateTitle = chartArea.append('text')
             .classed('date-title', true)
             .text("date")
             .attr('x', chartWidth - barMargin.top)
             .attr('y', chartHeight - barMargin.left)
-            // .attr('fill', 'rgb(128, 128, 128)')
             .attr('fill', "#E2ECFF")
             .attr('font-family', 'Helvetica')
             .attr('font-size', 20)
@@ -181,7 +176,7 @@ function sortedBar(choose, j, timee) {
             return (barHeight + barPadding) * (count + 1);
         }
     }
-    const createChart = () => {
+    const makeChart = () => {
         chart = chartArea.append('g')
             .classed('chart', true)
             .style('transform', `translate3d(${barMargin.left}px, ${barMargin.top}px, 0)`);
@@ -215,13 +210,6 @@ function sortedBar(choose, j, timee) {
             .style('fill', '#E2ECFF')
             .style('text-anchor', 'end');
 
-        // barsEnter.append('text')
-        //     .classed('value', true)
-        //     .text(d => d.value)
-        //     .attr('x', d => scale(d.value) - 30)
-        //     .attr('y', barPadding);
-
-        // 更新模式
         bars.transition().duration(duration).ease(d3.easeLinear)
             .style('transform', (d, i) => 'translate3d(0, ' + calTranslateY(i, 'end') + 'px, 0)')
             .select('rect')
@@ -237,7 +225,6 @@ function sortedBar(choose, j, timee) {
                 return (t) => textDom.textContent = i(t);
             });
 
-        // 退出模式
         bars.exit()
             .transition().duration(duration).ease(d3.easeLinear)
             .style('transform', function (d, i) {
@@ -257,7 +244,7 @@ function sortedBar(choose, j, timee) {
                 dateTitle.text(searchDate(date));
                 sliceData();
                 updateAxis();
-                renderAxisLine();
+                drawAxisLine();
                 renderChart();
             } else {
                 ticker.stop();
@@ -274,7 +261,7 @@ function sortedBar(choose, j, timee) {
                 sliceData();
                 d3.selectAll('g.axis g.tick').remove();
                 updateAxis();
-                renderAxisLine();
+                drawAxisLine();
                 renderChart();
             } else {
                 ticker.stop();
@@ -284,31 +271,29 @@ function sortedBar(choose, j, timee) {
 
     const init = () => {
         genLabel();
-        formatData(dateIndex); // 格式化数据
-        renderAxis(); // 渲染坐标轴
-        renderAxisLine(); // 渲染指示线
-        renderDateTitle(); // 渲染日期
-        createChart(); // 创建图表
-        renderChart(); // 渲染图表
-        createTicker(); // 创建定时器
+        formatData(dateIndex);
+        drawAxis();
+        drawAxisLine();
+        drawDate();
+        makeChart();
+        renderChart();
+        createTicker();
     }
-    // init();
     const chooseDate = (i) => {
         genLabel();
         dateIndex = i
-        formatData(dateIndex); // 格式化数据
-        renderAxis(); // 渲染坐标轴
-        renderAxisLine(); // 渲染指示线
-        renderDateTitle(); // 渲染日期
-        createChart(); // 创建图表
-        renderChart(); // 渲染图表
-        locator(dateIndex); // 创建定时器
+        formatData(dateIndex);
+        drawAxis();
+        drawAxisLine();
+        drawDate();
+        makeChart();
+        renderChart();
+        locator(dateIndex);
     }
 
     if (j==1){
         init();
     }
-    // init();
 
     if (j == 2){
         barchart.selectAll('rect').remove();
