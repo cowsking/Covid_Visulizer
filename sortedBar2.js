@@ -1,4 +1,4 @@
-function sortedBar(choose, j) {
+function sortedBar(choose, j, timee) {
     if (j == 1) {
         // barchart.selectAll('rect').remove();
         barchart.selectAll('text').remove();
@@ -251,7 +251,7 @@ function sortedBar(choose, j) {
 
     function createTicker() {
         const ticker = d3.interval(() => {
-            if (dateIndex > 600 && dateIndex < 701) {
+            if (dateIndex > 580 && dateIndex < 701) {
                 dateIndex++;
                 date = getDate();
                 dateTitle.text(searchDate(date));
@@ -304,15 +304,29 @@ function sortedBar(choose, j) {
         renderChart(); // 渲染图表
         locator(dateIndex); // 创建定时器
     }
-    init();
-    reqdate = document.getElementById("timeSlider");
-    reqdate.onchange = function () {
+
+    if (j==1){
+        init();
+    }
+    // init();
+
+    if (j == 2){
         barchart.selectAll('rect').remove();
         barchart.selectAll('text').remove();
         barchart.selectAll('line').remove();
         d3.selectAll('g.axis g.tick').remove();
-        val = reqdate.value;
-        chooseDate(val);
+        val = timee;
+        chooseDate(timee);
         console.log(val)
-    };
+    }
+    // reqdate = document.getElementById("timeSlider");
+    // reqdate.onchange = function () {
+    //     barchart.selectAll('rect').remove();
+    //     barchart.selectAll('text').remove();
+    //     barchart.selectAll('line').remove();
+    //     d3.selectAll('g.axis g.tick').remove();
+    //     val = reqdate.value;
+    //     chooseDate(val);
+    //     console.log(val)
+    // };
 }

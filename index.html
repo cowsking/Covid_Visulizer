@@ -11,7 +11,7 @@
    <!-- End trade -->     
 
    <!-- <script src="d3.js"></script> -->
-   <script src="./sortedBar.js"></script>
+   <!-- <script src="./sortedBar.js"></script> -->
    <script src="./sortedBar2.js"></script>
    <script src="./flight.js"></script>
     <script src="./trade.js"></script>
@@ -221,6 +221,8 @@
   <div class="container" style="background: #0e151f;">
     <h3 id="subTitle">How is vaccination impacting the COVID-19?</h3>
     <h5 id="subDis">Changes in cases, death rate, and vaccination rate in all countries from 2020 to 2021.</h5>
+    <br>
+    <h6 id="subDis"> <em>*After pressing the button, please wait till the end of the animation to drag the slider.*</em></h6>
     <span href="#" class="button" id="case" style="font-size: 20px">Case</span>
     <span href="#" class="button" id="death" style="font-size: 20px">Death</span>
     <span href="#" class="button" id="vaccination" style="font-size: 20px">Vaccination</span>
@@ -237,10 +239,8 @@
   <br>
   <div class="container" style="background: #0e151f">
     <a class="limit">2020-1-1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</a>
-
-        <input type="range" min="0" max="701" value="0" id="timeSlider" class="slider" >
-
-    <a class="limit">2020-1-1</a>
+      <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width="10px">
+    <a class="limit">2021-12-2</a>
   </div>
 
 </div>
@@ -392,40 +392,51 @@
           .attr("class", "outline")
           .attr("d", path);
 
+        var mode = 1;
+        timeSlide = document.getElementById("timeSlider");
+        timeSlide.onchange = function () {
+          let time = Number(document.getElementById("timeSlider").value);
+          sortedBar(mode,2,time)
+          updateMap();
+        };
+
         let btnCase = document.getElementById("case");
         btnCase.onclick = function () {
           outcomeSelect = "case";
           // console.log("case");
+          mode = 1;
           refresh()
           btnCase.style.color = '#1A2841'
           btnCase.style['background-color'] = '#E2ECFF'
           updateMap();
-          sortedBar(1,1);
+          sortedBar(1,1,0);
         };
 
         let btnDeath = document.getElementById("death");
         btnDeath.onclick = function () {
           outcomeSelect = "death";
           // console.log("death");
+          mode = 0;
           refresh()
           btnDeath.style.color = '#1A2841'
           btnDeath.style['background-color'] = '#E2ECFF'
 
           updateMap();
-          sortedBar(0,1);
+          sortedBar(0,1,0);
         };
 
         let btnVac = document.getElementById("vaccination");
         btnVac.onclick = function () {
           outcomeSelect = "vaccination";
           console.log("vaccination");
+          mode = 2;
           refresh()
           btnVac.style.color = '#1A2841'
           btnVac.style['background-color'] = '#E2ECFF'
      
 
           updateMap();
-          sortedBar(2,1);
+          sortedBar(2,1,0);
         };
         location_list = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
         'Anguilla', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba',
@@ -513,6 +524,7 @@
           },
         };
         updateMap = function () {
+          console.log('asdfasdfasdfasdfasdf')
           let time = Number(document.getElementById("timeSlider").value);
           // cur_data = data[time]['China']
           // if (!cur_data){
@@ -543,9 +555,7 @@
             .on("mouseover", mouseEntersPlot)
             .on("mouseout", mouseLeavesPlot);
         };
-        document.getElementById("timeSlider").onchange = function () {
-          updateMap();
-        };
+
         document.getElementById("timeSlider").oninput = function () {
           time =
             (Number(document.getElementById("timeSlider").value) + 1) *
@@ -559,8 +569,8 @@
           month = String(time.getMonth() + 1);
           day = String(time.getDate());
           console.log(year + "-" + month + "-" + day);
-          document.getElementById("dateDisplay").innerHTML =
-            year + "-" + month + "-" + day;
+          // document.getElementById("dateDisplay").innerHTML =
+          //   year + "-" + month + "-" + day;
         };
         let tooltipWidth = 250;
         let tooltipHeight = 40;
