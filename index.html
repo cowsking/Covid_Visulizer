@@ -15,185 +15,7 @@
    <script src="./sortedBar2.js"></script>
    <script src="./flight.js"></script>
     <script src="./trade.js"></script>
-  <style>
-    body{ 
-      background-color: #0e151f;
-    }
 
-    .float-child-left {
-      float: left;
-      padding: 20px;
-    }
-
-    /* .float-child-right {
-      float: right;
-      padding: 40px;
-    } */
-
-    .country {
-      fill: #374359;
-    }
-
-    .outline {
-      stroke: #C9C9C9;
-      stroke-width: 0.8px;
-      fill: none;
-    }
-
-    .button {
-      background-color: #374359;
-      color: #A7B3C8;
-      border-radius: 200px;
-      margin: 10px;
-      font-family: 'Helvetica';
-      font-weight: 200;
-      margin-top: 50px;
-    }
-
-    .axisAttr text{
-      fill: #E2ECFF;
-      font-family: 'Helvetica';
-    }
-
-    .axisAttr path{
-      stroke: #E2ECFF;
-    }
-
-    .axisAttr line{
-      stroke: #E2ECFF;
-    }
- 
-    .slider {
-      -webkit-appearance: none;
-      width: 50%;
-      height: 8px;
-      margin-left: -100px;
-      border-radius: 20px;  
-      background: #A7B3C8;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-    }
-    /* .slider .slider-box {
-        background-color: red;
-        display: inline-block;
-        height: 8px;
-    } */
-    /* .slider .slider-box .slider-value {
-        background-color: blue;
-    } */
-    /* .slider input {
-        position: absolute;
-    } */
-    .slider1 {
-      -webkit-appearance: none;
-      width: 1055px;
-      height: 8px;
-      margin-left: -100px;
-      border-radius: 20px;  
-      background: #A7B3C8;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-    }
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%; 
-      background: #E2ECFF;
-      cursor: pointer;
-    }
-
-    .slider::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #E2ECFF;
-      cursor: pointer;
-    }
-
-    #title {
-      font-size: 90px;
-      font-family: 'Helvetica';
-      font-weight: 800;
-      margin-top: 150px;
-      margin-left: 350px;
-      color: #E2ECFF;
-    }
-
-    #title2 {
-      font-size: 90px;
-      font-family: 'Helvetica';
-      font-weight: 800;
-      margin-top: -30px;
-      margin-left: 350px;
-      color: #E2ECFF;
-    }
-    
-    #discription {
-      font-size: 30px;
-      font-family: 'Helvetica';
-      font-weight: 400;
-      margin-top: -250px;
-      margin-left: 1200px;
-      color: #E2ECFF;
-      text-align: left;
-    }
-
-    #moreDis {
-      font-size: 22px;
-      font-family: 'Helvetica';
-      font-weight: 200;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      margin-left: 1200px;
-      color: #E2ECFF;
-      text-align: left;
-    }
-
-    #subTitle {
-      font-size: 50px;
-      font-family: 'Helvetica';
-      font-weight: 500;
-      color: #E2ECFF;
-      margin-top: 180px;
-    }
-
-    #subTitle1 {
-      font-size: 50px;
-      font-family: 'Helvetica';
-      font-weight: 500;
-      color: #E2ECFF;
-      margin-top: 250px;
-    }
-
-    #subDis{
-      font-size: 20px;
-      font-family: 'Helvetica';
-      font-weight: 200;
-      color: #E2ECFF;
-      margin-top: -20px;
-    }
-
-    .limit {
-      font-size: 20px;
-      font-family: 'Helvetica';
-      font-weight: 200;
-      color: #E2ECFF;
-      padding-left: 20px;
-    }
-
-    .circleText {
-      font-size: 15px;
-      font-family: 'Helvetica';
-      font-weight: 400;
-      fill: #E2ECFF;
-    }
-  </style>
 </head>
 
 <div style="background: #0e151f;">
@@ -239,7 +61,9 @@
   <br>
   <div class="container" style="background: #0e151f">
     <a class="limit">2020-1-1 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</a>
-      <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider" width="10px">
+    <span>
+          <input type="range" min="0" max="701" value="0" class="slider" id="timeSlider">
+    </span>  
     <a class="limit">2021-12-2</a>
   </div>
 
@@ -262,7 +86,9 @@
     <h3 id="subTitle">How different was the traffic under the COVID-19?</h3>
     <h5 id="subDis">Compare the weekly average XXXX in 2019 and 2020.</h5>
     <div id="flight" height="600"></div>
-    <input type="range" min="0" max="1050" width="1100" value="300" class="slider1" id="incomeSlider">
+    <span> 
+          <input type="range" min="0" max="1050" width="1100" value="300" class="slider" id="incomeSlider">
+    </span>
   </div>
 
 

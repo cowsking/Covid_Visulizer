@@ -56,14 +56,14 @@ function makeFlightData() {
                 .attr("fill", "white")
                 .attr("opacity", 0.8);
             svgF.selectAll("text").remove();
-            svgF.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-            svgF.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            svgF.append("text").attr("x", 40 + sliderWidth).attr("y", 575).text("Year 2020").style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            svgF.append("text").attr("x", sliderWidth - 40).attr("y", 575).text("Year 2019").style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
         }
 
         function createCountry() {
             temp = 0;
             airdata.forEach(d => {
-                svgF.append("text").attr("x", 0).attr("y", 37 + temp * 26.7).text(d.country).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+                svgF.append("text").attr("x", 0).attr("y", 37 + temp * 26.8).text(d.country).style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
                 temp = temp + 1;
             });
         }
@@ -73,16 +73,16 @@ function makeFlightData() {
             Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             for (i = 0; i < 12; i++) {
                 ini = ini + 88;
-                svgF.append("text").attr("x", ini).attr("y", 10).text(Month[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+                svgF.append("text").attr("x", ini).attr("y", 12).text(Month[i]).style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             }
         }
 
         function createlabel() {
             const labelList = ['0~20%','20%~40%','40%~60%','60%`80%','80%~100%'];
-            svgF.append("text").attr("x", 1090).attr("y", 50).text("Flight Density").style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+            svgF.append("text").attr("x", 1090).attr("y", 50).text("Flight Density").style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             for(i=0; i<5; i++){
-                svgF.append("rect").attr("width", 10).attr("height", 10).attr("x", 1090).attr("y", 70+i*15).style("fill", airColor[i]).attr("opacity", 1);
-                svgF.append("text").attr("x", 1110).attr("y", 80+i*15).text(labelList[i]).style("font-size", "15px").style("font-weight", "600").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+                svgF.append("rect").attr("width", 10).attr("height", 10).attr("x", 1090).attr("y", 70+i*30).style("fill", airColor[i]).attr("opacity", 1);
+                svgF.append("text").attr("x", 1110).attr("y", 80+i*30).text(labelList[i]).style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             }
         }
 
