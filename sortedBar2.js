@@ -162,7 +162,7 @@ function sortedBar(choose, j, timee) {
         dateTitle = chartArea.append('text')
             .classed('date-title', true)
             .text("date")
-            .attr('x', chartWidth - barMargin.top)
+            .attr('x', chartWidth - barMargin.top + 50)
             .attr('y', chartHeight - barMargin.left)
             .attr('fill', "#E2ECFF")
             .attr('font-family', 'Helvetica')
