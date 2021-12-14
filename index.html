@@ -338,26 +338,29 @@
           function updatemapLabel(k){
             map.select("rect.maplab").remove();
             map.selectAll("text.matlab").remove();
+            mapWidthInit = mapWidth/20;
+            mapHeightInit = mapHeight/20*15;
+            labelMapBox = 20;
             if (k==1){
               for (p=0; p<10; p++){
               ttttttt = Math.log10(48832228);
-              map.append("text").attr("x", 95).classed('matlab', true).attr("y", 40).text('48832228').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("text").attr("x", 20).classed('matlab', true).attr("y", 40).text('0').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("rect").classed('maplab', true).attr("width", 10).attr("height", 10).attr("x", 20+10*p).attr("y", 50).style("fill", caseColorScale(ttttttt*Math.pow(10,p))).attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit+labelMapBox*8).classed('matlab', true).attr("y", mapHeightInit-20).text('48832228').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit).classed('matlab', true).attr("y", mapHeightInit-20).text('0').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("rect").classed('maplab', true).attr("width", labelMapBox).attr("height", labelMapBox).attr("x", mapWidthInit+labelMapBox*p).attr("y", mapHeightInit).style("fill", caseColorScale(ttttttt*Math.pow(10,p))).attr("opacity", 1);
               }
             }
             if (k==0){
               for (p=0; p<10; p++){
-              map.append("text").attr("x", 95).classed('matlab', true).attr("y", 40).text('6033').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("text").attr("x", 20).classed('matlab', true).attr("y", 40).text('0').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("rect").classed('maplab', true).attr("width", 10).attr("height", 10).attr("x", 20+10*p).attr("y", 50).style("fill", deathColorScale([Math.floor(6033/10)*p])).attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit+labelMapBox*8).classed('matlab', true).attr("y", mapHeightInit-20).text('6033').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit).classed('matlab', true).attr("y", mapHeightInit-20).text('0').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("rect").classed('maplab', true).attr("width", labelMapBox).attr("height", labelMapBox).attr("x", mapWidthInit+labelMapBox*p).attr("y", mapHeightInit).style("fill", deathColorScale([Math.floor(6033/10)*p])).attr("opacity", 1);
               }
             }
             if (k==2){
               for (p=0; p<10; p++){
-              map.append("text").attr("x", 95).classed('matlab', true).attr("y", 40).text('100').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("text").attr("x", 20).classed('matlab', true).attr("y", 40).text('0').style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
-              map.append("rect").classed('maplab', true).attr("width", 10).attr("height", 10).attr("x", 20+10*p).attr("y", 50).style("fill", vaccinationColorScale([Math.floor(121/10)*p])).attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit+labelMapBox*8).classed('matlab', true).attr("y", mapHeightInit-20).text('100').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("text").attr("x", mapWidthInit).classed('matlab', true).attr("y", mapHeightInit-20).text('0').style("font-size", "20px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
+              map.append("rect").classed('maplab', true).attr("width", labelMapBox).attr("height", labelMapBox).attr("x", mapWidthInit+labelMapBox*p).attr("y", mapHeightInit).style("fill", vaccinationColorScale([Math.floor(121/10)*p])).attr("opacity", 1);
               }
             }
           }
