@@ -1,8 +1,8 @@
 function makeFlightData() {
     var requestData = async function () {
         const airdata = await d3.json("./airline_percentage.json");
-        console.log(airdata);
-        console.log("asdfasdfas")
+        // console.log(airdata);
+        // console.log("asdfasdfas")
         const flight = d3.select("div#flight");
         svgF = flight
             .append("svg")
@@ -32,7 +32,7 @@ function makeFlightData() {
         incomeSlider.onchange = function () {
             val = incomeSlider.value
             updateBlock(val);
-            console.log(incomeSlider.value);
+            // console.log(incomeSlider.value);
         };
 
         function updateBlock(value) {
@@ -78,7 +78,7 @@ function makeFlightData() {
         }
 
         function createlabel() {
-            const labelList = ['0~20%','20%~40%','40%~60%','60%`80%','80%~100%'];
+            const labelList = ['0~20%','20%~40%','40%~60%','60%~80%','80%~100%'];
             svgF.append("text").attr("x", 1090).attr("y", 50).text("Flight Density").style("font-size", "15px").style("font-weight", "400").style("font-family","Helvetica").attr("alignment-baseline", "middle").attr("fill", "#E2ECFF").attr("opacity", 1);
             for(i=0; i<5; i++){
                 svgF.append("rect").attr("width", 10).attr("height", 10).attr("x", 1090).attr("y", 70+i*30).style("fill", airColor[i]).attr("opacity", 1);

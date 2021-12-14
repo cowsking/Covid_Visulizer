@@ -79,7 +79,7 @@ function sortedBar(choose, j, timee) {
             barchart.append("text").attr("x", 40).attr("y", 16).text("Percentage %").style("font-size", "14px").attr('font-family', 'Helvetica').attr("fill", "#E2ECFF").attr("opacity", 1);
         }
     }
-    console.log('souvenirs');
+    // console.log('souvenirs');
 
     function compareNum(x, y) {
         if (x < y) {
@@ -115,12 +115,12 @@ function sortedBar(choose, j, timee) {
                 }
             }
         }
-        console.log('fuck')
-        console.log(lst);
+        // console.log('fuck')
+        // console.log(lst);
     }
     const sliceData = () =>
         dataSlice = lst.filter(d => d.date === date).sort((a, b) => b.value - a.value).slice(0, count);
-    console.log(dataSlice);
+    // console.log(dataSlice);
 
     const createScale = () =>
         scale = d3.scaleLinear().domain([0, d3.max(lst, d => d.value)]).range([0, chartWidth]);
@@ -302,7 +302,7 @@ function sortedBar(choose, j, timee) {
         d3.selectAll('g.axis g.tick').remove();
         val = timee;
         chooseDate(timee);
-        console.log(val)
+        // console.log(val)
     }
     // reqdate = document.getElementById("timeSlider");
     // reqdate.onchange = function () {

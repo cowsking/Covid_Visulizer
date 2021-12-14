@@ -138,7 +138,7 @@
 
           data[diffDays][country] = csv[i];
         }
-        console.log(data[0]["Argentina"]);
+        // console.log(data[0]["Argentina"]);
       
       
       }
@@ -155,7 +155,7 @@
           us_house,
           us_house.objects["world_countries-world_countries"]
         );
-        console.log(zips);
+        // console.log(zips);
 
         var projection = d3
           .geoEquirectangular()
@@ -239,7 +239,7 @@
         let btnVac = document.getElementById("vaccination");
         btnVac.onclick = function () {
           outcomeSelect = "vaccination";
-          console.log("vaccination");
+          // console.log("vaccination");
           mode = 2;
           refresh()
           btnVac.style.color = '#1A2841'
@@ -303,16 +303,16 @@
 
         caseColorScale = d3
           .scaleLog()
-          .domain([0.001, 251363.345])
-          .range(["#660064", "#F0BBFF"]);
+          .domain([0.001, 48832228])
+          .range(["#F0BBFF", "#660064"]);
         deathColorScale = d3
           .scaleLinear()
           .domain([0, 6033.739])
-          .range(["#A70000", "#FFBABA"]);
+          .range(["#FFBABA", "#A70000"]);
         vaccinationColorScale = d3
           .scaleLinear()
           .domain([0, 121.53])
-          .range(["#001AFF", "#BDE7FF"]);
+          .range(["#BDE7FF", "#001AFF"]);
 
         var outcomeFunctions = {
           case: function (d) {
@@ -335,15 +335,8 @@
           },
         };
         updateMap = function () {
-          console.log('asdfasdfasdfasdfasdf')
           let time = Number(document.getElementById("timeSlider").value);
-          // cur_data = data[time]['China']
-          // if (!cur_data){
-          //   console.log('not!!!')
-          // }
-          // res = outcomeFunctions[outcomeSelect](cur_data)
-          // console.log(res)
-          // createCount(outcomeSelect);
+         
           map
             .selectAll("path.country")
             .data(zips.features)
@@ -355,6 +348,12 @@
             .data(zips.features)
             .join("path")
             .style("fill", (d) => {
+              if (d.properties.name == 'United States'){
+                console.log(data[time][d.properties.name])
+              }
+              if (d.properties.name == 'China'){
+                console.log(data[time][d.properties.name])
+              }
               cur_data = data[time][d.properties.name];
 
               if (cur_data == undefined) {
@@ -365,6 +364,8 @@
             })
             .on("mouseover", mouseEntersPlot)
             .on("mouseout", mouseLeavesPlot);
+
+            
         };
 
         document.getElementById("timeSlider").oninput = function () {
@@ -379,7 +380,7 @@
           year = String(time.getFullYear());
           month = String(time.getMonth() + 1);
           day = String(time.getDate());
-          console.log(year + "-" + month + "-" + day);
+          // console.log(year + "-" + month + "-" + day);
           // document.getElementById("dateDisplay").innerHTML =
           //   year + "-" + month + "-" + day;
         };
@@ -426,7 +427,7 @@
           let country = d3.select(this);
           country_name = country.datum().properties.name;
           let countryID = country.datum().id;
-          console.log(countryID);
+          // console.log(countryID);
 
           txt.text(country_name);
           text2 = function (outcomeSelect) {

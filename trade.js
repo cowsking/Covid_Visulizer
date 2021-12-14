@@ -3,7 +3,7 @@ function tradeChart(i,j){
   // This code refers to the code of the INFO5100 d3 chord diagrams course
 
     dataset = ["./2019IN.json","./2020IN.json","./2020ex.json","./2019ex.json"];
-console.log(dataset[1]);
+// console.log(dataset[1]);
 
 if (j == 1){
     // chordChart.remove();
@@ -17,7 +17,7 @@ if (j == 1){
 const drawChord = async () => {
 const colorList = ["#48bf8e", "#075c62", "#a1def0", "#5e2a96"]
 const getData = await d3.json(dataset[i]);
-console.log(getData);
+// console.log(getData);
 
 let nodes = getData.nodes;
 let links = getData.edges;
@@ -30,7 +30,7 @@ for (let i=0; i<nodes.length; i++) {
     table.push(row);
     relations[i] = [i];
 }
-console.log(table);
+// console.log(table);
 links.forEach( d => {
   if (d.weight > 0) {
     table[d.sourceIndex][d.targetIndex] = d.weight;
@@ -40,8 +40,8 @@ links.forEach( d => {
     relations[d.targetIndex].push(d.sourceIndex);
   }
 });
-console.log(table);
-console.log(relations);
+// console.log(table);
+// console.log(relations);
 chord_width = document.getElementById("chord").getAttribute('width');
 chord_height = document.getElementById("chord").getAttribute('height');
 
@@ -56,7 +56,7 @@ let arc = d3.arc()
 let ribbonGen = d3.ribbon()
                   .radius(radius)
 let chords = generation(table);
-console.log(chords);
+// console.log(chords);
 chordChart.attr("transform",`translate(${chord_width/2.0},${chord_height/2.0+20})`);
 let colorScale = d3.scaleOrdinal().range(colorList);
 let ringContainer = chordChart.append("g");
